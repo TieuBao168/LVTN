@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/MapBtn"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="@string/Map" />
+    <item
+        android:id="@+id/DataBtn"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/Data" />
+<!--    <item-->
+<!--        android:id="@+id/thongtin"-->
+<!--        android:icon="@android:drawable/ic_menu_sort_by_size"-->
+<!--        android:title="@string/thongtin" />-->
+    <item
+        android:id="@+id/ReloadBtn"
+        android:icon="@android:drawable/stat_notify_sync"
+        android:title="@string/Reload"/>
+</menu>

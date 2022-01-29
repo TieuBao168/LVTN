@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.logisticaliot">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.location" android:required="true" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="true" />
+
+    <application
+        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LogisticalIoT">
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainAcitivity"
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
+        </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_api_key" />
+
+        <activity
+            android:name=".MapActivity"
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
+        </activity>
+        <activity
+            android:name=".DataActivity"
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
+        </activity>
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
+        </activity>
+        <activity
+            android:name=".ControlActivity"
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
+        </activity>
+        <activity
+            android:name=".DisplayActivity"
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
+        </activity>
+    </application>
+
+</manifest>

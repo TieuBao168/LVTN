@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_history_view.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_history_view.xml"
+    },
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_login.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_register.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_map.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\fragment_map.xml"
+    },
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_data.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\fragment_data.xml"
+    },
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_history_list.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_history_list.xml"
+    },
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_control.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_control.xml"
+    },
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_display.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_display.xml"
+    },
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_map.xml"
+    },
+    {
+        "merged": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_data.xml",
+        "source": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_data.xml"
+    }
+]
