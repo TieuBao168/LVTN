@@ -14,27 +14,6 @@ painlessMesh  mesh;
 void sendMessage(); // Prototype so PlatformIO doesn't complain
 Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
 
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(115200);
-
-  pinMode(LED, OUTPUT);
-
-  mesh.setDebugMsgTypes( ERROR | STARTUP );  
-  mesh.init( MESH_PREFIX, MESH_PASSWORD, &userScheduler, MESH_PORT );
-  mesh.onReceive(&receivedCallback);
-  mesh.onNewConnection(&newConnectionCallback);
-  mesh.onChangedConnections(&changedConnectionCallback);
-  mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
-  userScheduler.addTask( taskSendMessage );
-  taskSendMessage.enable();
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-
-}
-
 void sendMessage(){
   Serial.println();
   Serial.println("Start Sending....");
@@ -88,4 +67,26 @@ void changedConnectionCallback() {
 }
 void nodeTimeAdjustedCallback(int32_t offset) {
   Serial.printf("Adjusted time %u. Offset = %d\n", mesh.getNodeTime(), offset);
+}
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+
+  pinMode(LED, OUTPUT);
+
+  mesh.setDebugMsgTypes( ERROR | STARTUP );  
+  mesh.init( MESH_PREFIX, MESH_PASSWORD, &userScheduler, MESH_PORT );
+  mesh.onReceive(&receivedCallback);
+  mesh.onNewConnection(&newConnectionCallback);
+  mesh.onChangedConnections(&changedConnectionCallback);
+  mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
+  userScheduler.addTask( taskSendMessage );
+  taskSendMessage.enable();
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  // it will run the user scheduler as well
+  mesh.update();
 }

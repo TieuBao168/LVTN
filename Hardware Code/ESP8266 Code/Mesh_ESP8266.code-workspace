@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "Client_MeshWifi_ESP8266"
+		},
+		{
+			"path": "Server_MeshWifi_ESP8266"
+		}
+	]
+}
