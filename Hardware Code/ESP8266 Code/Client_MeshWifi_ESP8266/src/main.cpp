@@ -1,10 +1,15 @@
 #include <Arduino.h>
 #include <painlessMesh.h>
+#include <WiFiManager.h>
+#include <DHTesp.h>
 
 #define MESH_PREFIX     "IoTGateway"
 #define MESH_PASSWORD   "IoTGateway2021"
 #define MESH_PORT   5555
 
+DHTesp dht;
+
+float humidity, temperature;
 int LState;
 //Pin Declaration
 #define LED D5 //Relay1
@@ -29,8 +34,8 @@ void sendMessage(){
     stt = "ON";
   }
   doc["Device"] = "DHTNode";
-  doc["Temp"] = t;
-  doc["Humi"] = h;
+  doc["Temp"] = temperature;
+  doc["Humi"] = humidity;
   doc["Stt"] = stt;
   String msg ;
   serializeJson(doc, msg);
@@ -73,6 +78,11 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
 
+  Serial.println();
+  Serial.println("Status\tHumidity (%)\tTemperature (C)\t(F)\tHeatIndex (C)\t(F)");
+
+  dht.setup(D3, DHTesp::DHT11);
+
   pinMode(LED, OUTPUT);
 
   mesh.setDebugMsgTypes( ERROR | STARTUP );  
@@ -89,4 +99,21 @@ void loop() {
   // put your main code here, to run repeatedly:
   // it will run the user scheduler as well
   mesh.update();
+  
+  delay(dht.getMinimumSamplingPeriod());
+  humidity = dht.getHumidity();
+  temperature = dht.getTemperature();
+
+  Serial.print(dht.getStatusString());
+  Serial.print("\t");
+  Serial.print(humidity, 3);
+  Serial.print("\t\t");
+  Serial.print(temperature, 3);
+  Serial.print("\t\t");
+  Serial.print(dht.toFahrenheit(temperature), 1);
+  Serial.print("\t\t");
+  Serial.print(dht.computeHeatIndex(temperature, humidity, false), 1);
+  Serial.print("\t\t");
+  Serial.println(dht.computeHeatIndex(dht.toFahrenheit(temperature), humidity, true), 1);
+  delay(2000);
 }
