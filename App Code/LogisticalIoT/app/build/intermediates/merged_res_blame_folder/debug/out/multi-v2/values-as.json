@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-as\\values-as.xml",
+            "outputFile": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-as\\values-as.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\06f08a7c9eb92bee56db18779f31a479\\transformed\\jetified-play-services-base-17.0.0\\res\\values-as\\values.xml",

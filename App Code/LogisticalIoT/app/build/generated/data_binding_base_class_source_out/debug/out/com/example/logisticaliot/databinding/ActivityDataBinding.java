@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +18,7 @@ import java.lang.String;
 
 public final class ActivityDataBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
   public final Button ControlBtn;
@@ -50,7 +50,7 @@ public final class ActivityDataBinding implements ViewBinding {
   @NonNull
   public final TextView ThongtinView;
 
-  private ActivityDataBinding(@NonNull RelativeLayout rootView, @NonNull Button ControlBtn,
+  private ActivityDataBinding(@NonNull ScrollView rootView, @NonNull Button ControlBtn,
       @NonNull Button DataBtn, @NonNull TextView DoamView, @NonNull Button HistoryBtn,
       @NonNull Button MapBtn, @NonNull TextView NhietdoView, @NonNull Button ReloadBtn,
       @NonNull TextView TTTV5, @NonNull TextView TTTV6, @NonNull TextView ThongtinView) {
@@ -69,7 +69,7 @@ public final class ActivityDataBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -154,7 +154,7 @@ public final class ActivityDataBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityDataBinding((RelativeLayout) rootView, ControlBtn, DataBtn, DoamView,
+      return new ActivityDataBinding((ScrollView) rootView, ControlBtn, DataBtn, DoamView,
           HistoryBtn, MapBtn, NhietdoView, ReloadBtn, TTTV5, TTTV6, ThongtinView);
     }
     String missingId = rootView.getResources().getResourceName(id);

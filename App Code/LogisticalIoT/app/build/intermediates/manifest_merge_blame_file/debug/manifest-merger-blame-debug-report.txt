@@ -6,32 +6,32 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="29"
-8-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml
+8-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="31" />
-9-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml
+9-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:6:5-67
-11-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:6:22-64
+11-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:6:5-67
+11-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:6:22-64
 12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-12-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:7:5-79
-12-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:7:22-76
+12-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:7:5-79
+12-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:7:22-76
 13    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-13-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:8:5-81
-13-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:8:22-78
+13-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:8:5-81
+13-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:8:22-78
 14
 15    <uses-feature
-15-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:10:5-86
+15-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:10:5-86
 16        android:name="android.hardware.location"
-16-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:10:19-59
+16-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:10:19-59
 17        android:required="true" />
-17-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:10:60-83
+17-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:10:60-83
 18    <uses-feature
-18-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:11:5-90
+18-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:11:5-90
 19        android:name="android.hardware.location.gps"
-19-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:11:19-63
+19-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:11:19-63
 20        android:required="true" />
-20-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:11:64-87
+20-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:11:64-87
 21
 22    <!-- Include required permissions for Google Maps API to run. -->
 23    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -55,92 +55,92 @@
 33    </queries>
 34
 35    <application
-35-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:13:5-63:19
+35-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:13:5-63:19
 36        android:allowBackup="true"
-36-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:15:9-35
+36-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:15:9-35
 37        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 37-->[androidx.core:core:1.5.0] C:\Users\Asus\.gradle\caches\transforms-3\97e7ec19bd11dff7ae3d399ac9d0fa5b\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
 38        android:debuggable="true"
 39        android:extractNativeLibs="false"
 40        android:icon="@mipmap/ic_launcher"
-40-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:16:9-43
-41        android:label="@string/app_name"
-41-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:17:9-41
-42        android:roundIcon="@mipmap/ic_launcher_round"
-42-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:18:9-54
+40-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:16:9-43
+41        android:label="LogiIoT"
+41-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:17:9-32
+42        android:roundIcon="@drawable/logo"
+42-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:18:9-43
 43        android:supportsRtl="true"
-43-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:19:9-35
+43-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:19:9-35
 44        android:testOnly="true"
 45        android:theme="@style/Theme.LogisticalIoT"
-45-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:20:9-51
+45-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:20:9-51
 46        android:usesCleartextTraffic="true" >
-46-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:14:9-44
+46-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:14:9-44
 47        <activity
-47-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:21:9-28:20
+47-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:21:9-28:20
 48            android:name="com.example.logisticaliot.LoginActivity"
-48-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:22:13-42
+48-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:22:13-42
 49            android:exported="true" >
-49-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:23:13-36
+49-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:23:13-36
 50            <intent-filter>
-50-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:24:13-27:29
+50-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:24:13-27:29
 51                <action android:name="android.intent.action.MAIN" />
-51-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:25:17-69
-51-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:25:25-66
+51-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:25:17-69
+51-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:25:25-66
 52
 53                <category android:name="android.intent.category.LAUNCHER" />
-53-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:26:17-77
-53-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:26:27-74
+53-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:26:17-77
+53-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:26:27-74
 54            </intent-filter>
 55        </activity>
 56        <activity
-56-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:29:9-33:20
+56-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:29:9-33:20
 57            android:name="com.example.logisticaliot.MainAcitivity"
-57-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:30:13-42
+57-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:30:13-42
 58            android:exported="true" >
-58-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:31:13-36
+58-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:31:13-36
 59        </activity>
 60
 61        <meta-data
-61-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:34:9-36:51
+61-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:34:9-36:51
 62            android:name="com.google.android.geo.API_KEY"
-62-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:35:13-58
+62-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:35:13-58
 63            android:value="@string/map_api_key" />
-63-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:36:13-48
+63-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:36:13-48
 64
 65        <activity
-65-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:38:9-42:20
+65-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:38:9-42:20
 66            android:name="com.example.logisticaliot.MapActivity"
-66-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:39:13-40
+66-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:39:13-40
 67            android:exported="true" >
-67-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:40:13-36
+67-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:40:13-36
 68        </activity>
 69        <activity
-69-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:43:9-47:20
+69-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:43:9-47:20
 70            android:name="com.example.logisticaliot.DataActivity"
-70-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:44:13-41
+70-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:44:13-41
 71            android:exported="true" >
-71-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:45:13-36
+71-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:45:13-36
 72        </activity>
 73        <activity
-73-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:48:9-52:20
+73-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:48:9-52:20
 74            android:name="com.example.logisticaliot.HistoryActivity"
-74-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:49:13-44
+74-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:49:13-44
 75            android:exported="true" >
-75-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:50:13-36
+75-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:50:13-36
 76        </activity>
 77        <activity
-77-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:53:9-57:20
+77-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:53:9-57:20
 78            android:name="com.example.logisticaliot.ControlActivity"
-78-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:54:13-44
+78-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:54:13-44
 79            android:exported="true" >
-79-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:55:13-36
+79-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:55:13-36
 80        </activity>
 81        <activity
-81-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:58:9-62:20
+81-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:58:9-62:20
 82            android:name="com.example.logisticaliot.DisplayActivity"
-82-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:59:13-44
+82-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:59:13-44
 83            android:exported="true" >
-83-->D:\BK_211\De Cuong Luan Van\Demo App\LogisticalIoT\app\src\main\AndroidManifest.xml:60:13-36
+83-->D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:60:13-36
 84        </activity>
 85        <!-- Needs to be explicitly declared on P+ -->
 86        <uses-library

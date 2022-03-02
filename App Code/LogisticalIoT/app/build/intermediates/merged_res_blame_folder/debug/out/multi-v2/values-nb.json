@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\BK_211\\De Cuong Luan Van\\Demo App\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-nb\\values-nb.xml",
+            "outputFile": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-nb\\values-nb.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\97e7ec19bd11dff7ae3d399ac9d0fa5b\\transformed\\core-1.5.0\\res\\values-nb\\values-nb.xml",

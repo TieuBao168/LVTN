@@ -41,21 +41,21 @@ public class DataActivity extends AppCompatActivity {
 //        GetLightIntensity l = new GetLightIntensity();
 //        l.getJSONArray(DataActivity.this,AnhsangView);
 
-        new CountDownTimer(1000000000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                GetInformation f = new GetInformation();
-                f.getJSONArray(DataActivity.this,ThongtinView);
-                GetTemperature t = new GetTemperature ();
-                t.getJSONArray(DataActivity.this,NhietdoView);
-                GetHumidity h = new GetHumidity();
-                h.getJSONArray(DataActivity.this,DoamView);
-            }
-            @Override
-            public void onFinish() {
-
-            }
-        }.start();
+//        new CountDownTimer(1000000000,1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                GetInformation f = new GetInformation();
+//                f.getJSONArray(DataActivity.this,ThongtinView);
+//                GetTemperature t = new GetTemperature ();
+//                t.getJSONArray(DataActivity.this,NhietdoView);
+//                GetHumidity h = new GetHumidity();
+//                h.getJSONArray(DataActivity.this,DoamView);
+//            }
+//            @Override
+//            public void onFinish() {
+//
+//            }
+//        }.start();
 
         ReloadBtn.setOnClickListener(new View.OnClickListener() {
             @Override

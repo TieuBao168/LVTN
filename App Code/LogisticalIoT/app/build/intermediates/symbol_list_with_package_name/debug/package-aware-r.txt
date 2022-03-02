@@ -2162,6 +2162,8 @@ id legacy
 id light
 id line1
 id line3
+id lineChart
+id lineChart1
 id linear
 id listMode
 id list_item

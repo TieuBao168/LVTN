@@ -3,8 +3,8 @@
 #include <WiFiManager.h>
 #include <DHTesp.h>
 
-#define MESH_PREFIX     "IoTGateway"
-#define MESH_PASSWORD   "IoTGateway2021"
+#define MESH_PREFIX     "IoTLogistic"
+#define MESH_PASSWORD   "IoTLogistic2022"
 #define MESH_PORT   5555
 
 DHTesp dht;
@@ -34,8 +34,8 @@ void sendMessage(){
     stt = "ON";
   }
   doc["Device"] = "DHTNode";
-  doc["Temp"] = temperature;
-  doc["Humi"] = humidity;
+  doc["Temp"] = t;
+  doc["Humi"] = h;
   doc["Stt"] = stt;
   String msg ;
   serializeJson(doc, msg);
@@ -100,20 +100,19 @@ void loop() {
   // it will run the user scheduler as well
   mesh.update();
   
-  delay(dht.getMinimumSamplingPeriod());
-  humidity = dht.getHumidity();
-  temperature = dht.getTemperature();
+  // delay(dht.getMinimumSamplingPeriod());
+  // humidity = dht.getHumidity();
+  // temperature = dht.getTemperature();
 
-  Serial.print(dht.getStatusString());
-  Serial.print("\t");
-  Serial.print(humidity, 3);
-  Serial.print("\t\t");
-  Serial.print(temperature, 3);
-  Serial.print("\t\t");
-  Serial.print(dht.toFahrenheit(temperature), 1);
-  Serial.print("\t\t");
-  Serial.print(dht.computeHeatIndex(temperature, humidity, false), 1);
-  Serial.print("\t\t");
-  Serial.println(dht.computeHeatIndex(dht.toFahrenheit(temperature), humidity, true), 1);
-  delay(2000);
+  // Serial.print(dht.getStatusString());
+  // Serial.print("\t");
+  // Serial.print(humidity, 3);
+  // Serial.print("\t\t");
+  // Serial.print(temperature, 3);
+  // Serial.print("\t\t");
+  // Serial.print(dht.toFahrenheit(temperature), 1);
+  // Serial.print("\t\t");
+  // Serial.print(dht.computeHeatIndex(temperature, humidity, false), 1);
+  // Serial.print("\t\t");
+  // Serial.println(dht.computeHeatIndex(dht.toFahrenheit(temperature), humidity, true), 1);
 }
