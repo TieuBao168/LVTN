@@ -5,26 +5,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ScrollView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.logisticaliot.R;
+import com.github.mikephil.charting.charts.LineChart;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ActivityDataBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final RelativeLayout rootView;
 
   @NonNull
   public final Button ControlBtn;
 
   @NonNull
   public final Button DataBtn;
+
+  @NonNull
+  public final LineChart DoamChart;
 
   @NonNull
   public final TextView DoamView;
@@ -34,6 +38,9 @@ public final class ActivityDataBinding implements ViewBinding {
 
   @NonNull
   public final Button MapBtn;
+
+  @NonNull
+  public final LineChart NhietdoChart;
 
   @NonNull
   public final TextView NhietdoView;
@@ -50,16 +57,19 @@ public final class ActivityDataBinding implements ViewBinding {
   @NonNull
   public final TextView ThongtinView;
 
-  private ActivityDataBinding(@NonNull ScrollView rootView, @NonNull Button ControlBtn,
-      @NonNull Button DataBtn, @NonNull TextView DoamView, @NonNull Button HistoryBtn,
-      @NonNull Button MapBtn, @NonNull TextView NhietdoView, @NonNull Button ReloadBtn,
-      @NonNull TextView TTTV5, @NonNull TextView TTTV6, @NonNull TextView ThongtinView) {
+  private ActivityDataBinding(@NonNull RelativeLayout rootView, @NonNull Button ControlBtn,
+      @NonNull Button DataBtn, @NonNull LineChart DoamChart, @NonNull TextView DoamView,
+      @NonNull Button HistoryBtn, @NonNull Button MapBtn, @NonNull LineChart NhietdoChart,
+      @NonNull TextView NhietdoView, @NonNull Button ReloadBtn, @NonNull TextView TTTV5,
+      @NonNull TextView TTTV6, @NonNull TextView ThongtinView) {
     this.rootView = rootView;
     this.ControlBtn = ControlBtn;
     this.DataBtn = DataBtn;
+    this.DoamChart = DoamChart;
     this.DoamView = DoamView;
     this.HistoryBtn = HistoryBtn;
     this.MapBtn = MapBtn;
+    this.NhietdoChart = NhietdoChart;
     this.NhietdoView = NhietdoView;
     this.ReloadBtn = ReloadBtn;
     this.TTTV5 = TTTV5;
@@ -69,7 +79,7 @@ public final class ActivityDataBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public RelativeLayout getRoot() {
     return rootView;
   }
 
@@ -106,6 +116,12 @@ public final class ActivityDataBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.DoamChart;
+      LineChart DoamChart = ViewBindings.findChildViewById(rootView, id);
+      if (DoamChart == null) {
+        break missingId;
+      }
+
       id = R.id.DoamView;
       TextView DoamView = ViewBindings.findChildViewById(rootView, id);
       if (DoamView == null) {
@@ -121,6 +137,12 @@ public final class ActivityDataBinding implements ViewBinding {
       id = R.id.Map_Btn;
       Button MapBtn = ViewBindings.findChildViewById(rootView, id);
       if (MapBtn == null) {
+        break missingId;
+      }
+
+      id = R.id.NhietdoChart;
+      LineChart NhietdoChart = ViewBindings.findChildViewById(rootView, id);
+      if (NhietdoChart == null) {
         break missingId;
       }
 
@@ -154,8 +176,9 @@ public final class ActivityDataBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityDataBinding((ScrollView) rootView, ControlBtn, DataBtn, DoamView,
-          HistoryBtn, MapBtn, NhietdoView, ReloadBtn, TTTV5, TTTV6, ThongtinView);
+      return new ActivityDataBinding((RelativeLayout) rootView, ControlBtn, DataBtn, DoamChart,
+          DoamView, HistoryBtn, MapBtn, NhietdoChart, NhietdoView, ReloadBtn, TTTV5, TTTV6,
+          ThongtinView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1908,6 +1908,7 @@ int id DataBtn 0x7f080007
 int id Data_Btn 0x7f080008
 int id Doam 0x7f080009
 int id Doam1 0x7f08000a
+int id DoamChart 0x7f080206
 int id DoamView 0x7f08000b
 int id FUNCTION 0x7f08000c
 int id ForgetPasswordbtn 0x7f08000d
@@ -1921,6 +1922,7 @@ int id Matkhautext 0x7f080014
 int id NO_DEBUG 0x7f080015
 int id Nhietdo 0x7f080016
 int id Nhietdo1 0x7f080017
+int id NhietdoChart 0x7f080207
 int id NhietdoView 0x7f080018
 int id Registerbtn 0x7f080019
 int id ReloadBtn 0x7f08001a

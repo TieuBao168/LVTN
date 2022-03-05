@@ -133,7 +133,7 @@ void mesh_setup()
   // network (STATION_SSID)
   mesh.init(MESH_PREFIX, MESH_PASSWORD, MESH_PORT, WIFI_AP_STA, 6);
   mesh.onReceive(&receivedCallback);
-  mesh.stationManual(ssid, pass);
+  // mesh.stationManual(ssid, pass);
   mesh.setHostname(HOSTNAME);
   mesh.onNewConnection(&newConnectionCallback);
   mesh.onChangedConnections(&changedConnectionCallback);

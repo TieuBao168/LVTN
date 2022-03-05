@@ -1909,6 +1909,7 @@ id DataBtn
 id Data_Btn
 id Doam
 id Doam1
+id DoamChart
 id DoamView
 id FUNCTION
 id ForgetPasswordbtn
@@ -1922,6 +1923,7 @@ id Matkhautext
 id NO_DEBUG
 id Nhietdo
 id Nhietdo1
+id NhietdoChart
 id NhietdoView
 id Registerbtn
 id ReloadBtn
