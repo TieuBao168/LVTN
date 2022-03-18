@@ -4,65 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/Original">
 
-    <TextView
-        android:id="@+id/TT_TV5"
+    <WebView
+        android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/Original"
-        android:text=" Thông tin tài xế"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="50dp" />
 
-    <TextView
-        android:id="@+id/ThongtinView"
-        android:layout_width="290dp"
-        android:layout_height="148dp"
-        android:layout_below="@+id/TT_TV5"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="thong tin"
-        android:textColor="@color/black"
-        android:textSize="23dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/TT_TV6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ThongtinView"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/Original"
-        android:text=" Thông số cảm biến"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textStyle="bold" />
-
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/lineChart"
-        android:layout_width="370dp"
-        android:layout_height="150dp"
-        android:layout_below="@+id/TT_TV6"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp" />
-
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/lineChart1"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@+id/lineChart"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp" />
-
+    <Button
+        android:id="@+id/Reload_Btn"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/Gray"
+        android:text="Reload"
+        app:icon="@android:drawable/stat_notify_sync" />
     <Button
         android:id="@+id/Map_Btn"
         android:layout_width="130dp"
@@ -76,7 +39,7 @@
         app:icon="@android:drawable/ic_dialog_map" />
 
     <Button
-        android:id="@+id/Reload_Btn"
+        android:id="@+id/Control_Btn"
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
@@ -84,8 +47,9 @@
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"
         android:backgroundTint="@color/Original"
-        android:text="Reload"
-        app:icon="@android:drawable/stat_notify_sync" />
+        android:text="Ctrl"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_menu_manage" />
 
     <Button
         android:id="@+id/Data_Btn"

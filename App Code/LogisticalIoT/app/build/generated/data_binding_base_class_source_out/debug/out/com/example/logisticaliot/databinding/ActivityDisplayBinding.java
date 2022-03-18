@@ -4,7 +4,6 @@ package com.example.logisticaliot.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
@@ -29,21 +28,12 @@ public final class ActivityDisplayBinding implements ViewBinding {
   @NonNull
   public final Button MapBtn;
 
-  @NonNull
-  public final Button ReloadBtn;
-
-  @NonNull
-  public final WebView webview;
-
   private ActivityDisplayBinding(@NonNull RelativeLayout rootView, @NonNull Button ControlBtn,
-      @NonNull Button DataBtn, @NonNull Button MapBtn, @NonNull Button ReloadBtn,
-      @NonNull WebView webview) {
+      @NonNull Button DataBtn, @NonNull Button MapBtn) {
     this.rootView = rootView;
     this.ControlBtn = ControlBtn;
     this.DataBtn = DataBtn;
     this.MapBtn = MapBtn;
-    this.ReloadBtn = ReloadBtn;
-    this.webview = webview;
   }
 
   @Override
@@ -91,20 +81,7 @@ public final class ActivityDisplayBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.Reload_Btn;
-      Button ReloadBtn = ViewBindings.findChildViewById(rootView, id);
-      if (ReloadBtn == null) {
-        break missingId;
-      }
-
-      id = R.id.webview;
-      WebView webview = ViewBindings.findChildViewById(rootView, id);
-      if (webview == null) {
-        break missingId;
-      }
-
-      return new ActivityDisplayBinding((RelativeLayout) rootView, ControlBtn, DataBtn, MapBtn,
-          ReloadBtn, webview);
+      return new ActivityDisplayBinding((RelativeLayout) rootView, ControlBtn, DataBtn, MapBtn);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

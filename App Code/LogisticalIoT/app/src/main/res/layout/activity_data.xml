@@ -6,18 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:orientation="vertical"
+    android:background="@color/Original"
     >
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:layout_above="@+id/Reload_Btn">
+        android:layout_above="@+id/Data_Btn">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/TT_TV5"
@@ -30,7 +31,8 @@
             android:text=" Thông tin tài xế"
             android:textColor="@color/white"
             android:textSize="30dp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/paytone_one"
+            />
 
         <TextView
             android:id="@+id/ThongtinView"
@@ -42,7 +44,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:textColor="@color/black"
-            android:textSize="23dp" />
+            android:textSize="23dp"
+            android:fontFamily="@font/asul"/>
 
         <TextView
             android:id="@+id/TT_TV6"
@@ -53,10 +56,11 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
             android:background="@color/Original"
+            android:fontFamily="@font/paytone_one"
             android:text=" Thông số cảm biến"
             android:textColor="@color/white"
             android:textSize="30dp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:id="@+id/NhietdoView"
@@ -68,7 +72,8 @@
             android:text="Nhiệt độ"
             android:textColor="@color/Original"
             android:textSize="25dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/suez_one"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/NhietdoChart"
@@ -85,7 +90,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/NhietdoChart"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="35dp"
+            android:fontFamily="@font/suez_one"
             android:text="Độ ẩm"
             android:textColor="@color/Original"
             android:textSize="25dp"

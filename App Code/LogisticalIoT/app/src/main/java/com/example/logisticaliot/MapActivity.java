@@ -55,7 +55,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MapActivity.this, DisplayActivity.class);
+                intent.setClass(MapActivity.this, ControlActivity.class);
                 startActivity(intent);
             }
         });
@@ -89,6 +89,32 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //        B = 105.649804;
         mMap = map;
         RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, Urls.GETDATA_URL, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                // chuyen mang thanh chuoi
+                for (int i = response.length() - 1; i < response.length(); i++) {
+                    try {
+                        JSONObject person = response.getJSONObject(i);
+                        Kinhdo = Double.parseDouble(person.getString("Kinh do"));
+                        Vido = Double.parseDouble(person.getString("Vi do"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                LatLng xe1 = new LatLng(Kinhdo, Vido);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 14));
+            }
+                }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(MapActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
+                }
+            });
+                queue.add(req);
+
         new CountDownTimer(1000000000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -114,7 +140,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 String DichDen = person.getString("Dich den");
                                 //dua vao chuoi
                                 LatLng xe1 = new LatLng(Kinhdo,Vido);
-                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 14));
+//                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 14));
                                 mMap.addMarker(new MarkerOptions()
                                         .title("Xuất phát từ "+XuatPhat+" đến "+DichDen)
                                         .snippet("Tên tài xế: "+Ten)

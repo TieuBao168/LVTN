@@ -80,6 +80,51 @@ public class DataActivity extends AppCompatActivity {
 //            }
 //        }.start();
 
+        GetData(Urls.GETDATA_URL);
+
+
+        ReloadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GetInformation f = new GetInformation();
+                // 2. lay mang -> chuyen thanh chuoi
+                f.getJSONArray(DataActivity.this,ThongtinView);
+//                GetTemperature t = new GetTemperature ();
+//                t.getJSONArray(DataActivity.this,NhietdoView);
+//                GetHumidity h = new GetHumidity();
+//                h.getJSONArray(DataActivity.this,DoamView);
+//                GetLightIntensity l = new GetLightIntensity();
+//                l.getJSONArray(DataActivity.this,AnhsangView);
+            }
+        });
+
+        MapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(DataActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+        HistoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(DataActivity.this, HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+        ControlBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(DataActivity.this, ControlActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void GetData(String url) {
         RequestQueue queue = Volley.newRequestQueue(this);
         // 2.truyền đường dẫn vào request
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, Urls.GETDATA_URL,null, new Response.Listener<JSONArray>() {
@@ -217,45 +262,5 @@ public class DataActivity extends AppCompatActivity {
         });
         //4. add
         queue.add(req);
-
-        ReloadBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GetInformation f = new GetInformation();
-                // 2. lay mang -> chuyen thanh chuoi
-                f.getJSONArray(DataActivity.this,ThongtinView);
-//                GetTemperature t = new GetTemperature ();
-//                t.getJSONArray(DataActivity.this,NhietdoView);
-//                GetHumidity h = new GetHumidity();
-//                h.getJSONArray(DataActivity.this,DoamView);
-//                GetLightIntensity l = new GetLightIntensity();
-//                l.getJSONArray(DataActivity.this,AnhsangView);
-            }
-        });
-
-        MapBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(DataActivity.this, MapActivity.class);
-                startActivity(intent);
-            }
-        });
-        HistoryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(DataActivity.this, HistoryActivity.class);
-                startActivity(intent);
-            }
-        });
-        ControlBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(DataActivity.this, DisplayActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }

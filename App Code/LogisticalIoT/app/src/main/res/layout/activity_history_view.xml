@@ -11,9 +11,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="2dp"
+        android:fontFamily="@font/alatsi"
         android:text="Thời gian"
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/Nhietdo1"
@@ -22,6 +24,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="2dp"
         android:layout_toRightOf="@+id/Thoigian1"
+        android:fontFamily="@font/alatsi"
         android:text="Nhiệt độ"
         android:textColor="@color/black"
         android:textSize="20dp" />
@@ -35,7 +38,9 @@
         android:layout_toRightOf="@+id/Thoigian1"
         android:text="Độ ẩm"
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:fontFamily="@font/alatsi"
+        />
 
 <!--    <TextView-->
 <!--        android:id="@+id/Anhsang1"-->

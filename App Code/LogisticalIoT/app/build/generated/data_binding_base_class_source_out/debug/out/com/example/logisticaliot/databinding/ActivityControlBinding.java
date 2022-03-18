@@ -4,15 +4,14 @@ package com.example.logisticaliot.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.logisticaliot.R;
-import com.github.mikephil.charting.charts.LineChart;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -20,6 +19,9 @@ import java.lang.String;
 public final class ActivityControlBinding implements ViewBinding {
   @NonNull
   private final RelativeLayout rootView;
+
+  @NonNull
+  public final Button ControlBtn;
 
   @NonNull
   public final Button DataBtn;
@@ -31,33 +33,17 @@ public final class ActivityControlBinding implements ViewBinding {
   public final Button ReloadBtn;
 
   @NonNull
-  public final TextView TTTV5;
+  public final WebView webview;
 
-  @NonNull
-  public final TextView TTTV6;
-
-  @NonNull
-  public final TextView ThongtinView;
-
-  @NonNull
-  public final LineChart lineChart;
-
-  @NonNull
-  public final LineChart lineChart1;
-
-  private ActivityControlBinding(@NonNull RelativeLayout rootView, @NonNull Button DataBtn,
-      @NonNull Button MapBtn, @NonNull Button ReloadBtn, @NonNull TextView TTTV5,
-      @NonNull TextView TTTV6, @NonNull TextView ThongtinView, @NonNull LineChart lineChart,
-      @NonNull LineChart lineChart1) {
+  private ActivityControlBinding(@NonNull RelativeLayout rootView, @NonNull Button ControlBtn,
+      @NonNull Button DataBtn, @NonNull Button MapBtn, @NonNull Button ReloadBtn,
+      @NonNull WebView webview) {
     this.rootView = rootView;
+    this.ControlBtn = ControlBtn;
     this.DataBtn = DataBtn;
     this.MapBtn = MapBtn;
     this.ReloadBtn = ReloadBtn;
-    this.TTTV5 = TTTV5;
-    this.TTTV6 = TTTV6;
-    this.ThongtinView = ThongtinView;
-    this.lineChart = lineChart;
-    this.lineChart1 = lineChart1;
+    this.webview = webview;
   }
 
   @Override
@@ -87,6 +73,12 @@ public final class ActivityControlBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.Control_Btn;
+      Button ControlBtn = ViewBindings.findChildViewById(rootView, id);
+      if (ControlBtn == null) {
+        break missingId;
+      }
+
       id = R.id.Data_Btn;
       Button DataBtn = ViewBindings.findChildViewById(rootView, id);
       if (DataBtn == null) {
@@ -105,38 +97,14 @@ public final class ActivityControlBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.TT_TV5;
-      TextView TTTV5 = ViewBindings.findChildViewById(rootView, id);
-      if (TTTV5 == null) {
+      id = R.id.webview;
+      WebView webview = ViewBindings.findChildViewById(rootView, id);
+      if (webview == null) {
         break missingId;
       }
 
-      id = R.id.TT_TV6;
-      TextView TTTV6 = ViewBindings.findChildViewById(rootView, id);
-      if (TTTV6 == null) {
-        break missingId;
-      }
-
-      id = R.id.ThongtinView;
-      TextView ThongtinView = ViewBindings.findChildViewById(rootView, id);
-      if (ThongtinView == null) {
-        break missingId;
-      }
-
-      id = R.id.lineChart;
-      LineChart lineChart = ViewBindings.findChildViewById(rootView, id);
-      if (lineChart == null) {
-        break missingId;
-      }
-
-      id = R.id.lineChart1;
-      LineChart lineChart1 = ViewBindings.findChildViewById(rootView, id);
-      if (lineChart1 == null) {
-        break missingId;
-      }
-
-      return new ActivityControlBinding((RelativeLayout) rootView, DataBtn, MapBtn, ReloadBtn,
-          TTTV5, TTTV6, ThongtinView, lineChart, lineChart1);
+      return new ActivityControlBinding((RelativeLayout) rootView, ControlBtn, DataBtn, MapBtn,
+          ReloadBtn, webview);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
