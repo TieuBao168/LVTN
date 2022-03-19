@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -22,9 +21,6 @@ public final class ActivityLoginBinding implements ViewBinding {
   private final RelativeLayout rootView;
 
   @NonNull
-  public final TextView ForgetPasswordbtn;
-
-  @NonNull
   public final Button Loginbtn;
 
   @NonNull
@@ -36,11 +32,9 @@ public final class ActivityLoginBinding implements ViewBinding {
   @NonNull
   public final EditText Taikhoantext;
 
-  private ActivityLoginBinding(@NonNull RelativeLayout rootView,
-      @NonNull TextView ForgetPasswordbtn, @NonNull Button Loginbtn, @NonNull EditText Matkhautext,
-      @NonNull Button Registerbtn, @NonNull EditText Taikhoantext) {
+  private ActivityLoginBinding(@NonNull RelativeLayout rootView, @NonNull Button Loginbtn,
+      @NonNull EditText Matkhautext, @NonNull Button Registerbtn, @NonNull EditText Taikhoantext) {
     this.rootView = rootView;
-    this.ForgetPasswordbtn = ForgetPasswordbtn;
     this.Loginbtn = Loginbtn;
     this.Matkhautext = Matkhautext;
     this.Registerbtn = Registerbtn;
@@ -74,12 +68,6 @@ public final class ActivityLoginBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.ForgetPasswordbtn;
-      TextView ForgetPasswordbtn = ViewBindings.findChildViewById(rootView, id);
-      if (ForgetPasswordbtn == null) {
-        break missingId;
-      }
-
       id = R.id.Loginbtn;
       Button Loginbtn = ViewBindings.findChildViewById(rootView, id);
       if (Loginbtn == null) {
@@ -104,8 +92,8 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityLoginBinding((RelativeLayout) rootView, ForgetPasswordbtn, Loginbtn,
-          Matkhautext, Registerbtn, Taikhoantext);
+      return new ActivityLoginBinding((RelativeLayout) rootView, Loginbtn, Matkhautext, Registerbtn,
+          Taikhoantext);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

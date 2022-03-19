@@ -66,24 +66,22 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/ForgetPasswordbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Registerbtn"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:textStyle="bold"
-            android:text="Quên mật khẩu?"
-            android:textColor="#000"
-            android:textSize="18dp"
-            />
+<!--        <TextView-->
+<!--            android:id="@+id/ForgetPasswordbtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/Registerbtn"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:text="Quên mật khẩu?"-->
+<!--            android:textColor="#000"-->
+<!--            android:textSize="18dp"-->
+<!--            android:textStyle="bold" />-->
 
-        <ImageView
-            android:layout_width="104dp"
-            android:layout_height="84dp"
-            android:layout_marginBottom="40dp"
-            android:src="@drawable/logo"
-            />
+<!--        <ImageView-->
+<!--            android:layout_width="104dp"-->
+<!--            android:layout_height="84dp"-->
+<!--            android:layout_marginBottom="40dp"-->
+<!--            android:src="@drawable/logo" />-->
 </RelativeLayout>

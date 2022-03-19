@@ -26,6 +26,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -36,7 +37,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     GoogleMap mMap;
 
     Button DataBtn,ReloadBtn,ControlBtn;
-
+    Marker dichuyen;
     String strJson = "";
     double A, B, Kinhdo, Vido;
     String url = "https://iotlogistics.000webhostapp.com/App/getdata.php";
@@ -44,6 +45,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+
         DataBtn = findViewById(R.id.Data_Btn);
 //        ReloadBtn = findViewById(R.id.ReloadBtn);
         ControlBtn = findViewById(R.id.Control_Btn);
@@ -57,6 +60,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Intent intent = new Intent();
                 intent.setClass(MapActivity.this, ControlActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
         DataBtn.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +69,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Intent intent = new Intent();
                 intent.setClass(MapActivity.this, DataActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
         
@@ -88,6 +93,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //        A = 9.722166;
 //        B = 105.649804;
         mMap = map;
+
         RequestQueue queue = Volley.newRequestQueue(this);
 
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, Urls.GETDATA_URL, null, new Response.Listener<JSONArray>() {
@@ -105,7 +111,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     }
                 }
                 LatLng xe1 = new LatLng(Kinhdo, Vido);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 14));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 15));
             }
                 }, new Response.ErrorListener() {
                 @Override
@@ -115,18 +121,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             });
                 queue.add(req);
 
+
+        RequestQueue queue1 = Volley.newRequestQueue(this);
         new CountDownTimer(1000000000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, Urls.GETDATA_URL, null, new Response.Listener<JSONArray>() {
+                JsonArrayRequest req1 = new JsonArrayRequest(Request.Method.GET, Urls.GETDATA_URL, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         // chuyen mang thanh chuoi
                         for (int i=response.length()-1; i<response.length(); i++){
                             try{
-                                JSONObject person = response.getJSONObject(i);
-                                Kinhdo = Double.parseDouble(person.getString("Kinh do"));
-                                Vido = Double.parseDouble(person.getString("Vi do"));
+                                JSONObject vitri = response.getJSONObject(i);
+                                Kinhdo = Double.parseDouble(vitri.getString("Kinh do"));
+                                Vido = Double.parseDouble(vitri.getString("Vi do"));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -140,11 +148,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 String DichDen = person.getString("Dich den");
                                 //dua vao chuoi
                                 LatLng xe1 = new LatLng(Kinhdo,Vido);
-//                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 14));
-                                mMap.addMarker(new MarkerOptions()
+                                if (dichuyen != null){
+                                    dichuyen.remove();
+                                }
+                                dichuyen = mMap.addMarker(new MarkerOptions()
                                         .title("Xuất phát từ "+XuatPhat+" đến "+DichDen)
                                         .snippet("Tên tài xế: "+Ten)
                                         .position(xe1));
+//                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 14));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -157,7 +168,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //                Toast.makeText(MapActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
                     }
                 });
-                queue.add(req);
+                queue1.add(req1);
             }
 
             @Override

@@ -59,8 +59,7 @@
             android:fontFamily="@font/paytone_one"
             android:text=" Thông số cảm biến"
             android:textColor="@color/white"
-            android:textSize="30dp"
-             />
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/NhietdoView"

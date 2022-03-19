@@ -4,9 +4,12 @@ package com.example.logisticaliot.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -21,29 +24,51 @@ public final class ActivityControlBinding implements ViewBinding {
   private final RelativeLayout rootView;
 
   @NonNull
+  public final ImageView AirConditionerImg;
+
+  @NonNull
   public final Button ControlBtn;
 
   @NonNull
   public final Button DataBtn;
 
   @NonNull
+  public final EditText InputValue;
+
+  @NonNull
+  public final LinearLayout Layout100T1;
+
+  @NonNull
   public final Button MapBtn;
 
   @NonNull
-  public final Button ReloadBtn;
+  public final Button OkBtn;
 
   @NonNull
-  public final WebView webview;
+  public final Button OnOffBtn;
 
-  private ActivityControlBinding(@NonNull RelativeLayout rootView, @NonNull Button ControlBtn,
-      @NonNull Button DataBtn, @NonNull Button MapBtn, @NonNull Button ReloadBtn,
-      @NonNull WebView webview) {
+  @NonNull
+  public final TextView TX100T1;
+
+  @NonNull
+  public final TextView TX100T2;
+
+  private ActivityControlBinding(@NonNull RelativeLayout rootView,
+      @NonNull ImageView AirConditionerImg, @NonNull Button ControlBtn, @NonNull Button DataBtn,
+      @NonNull EditText InputValue, @NonNull LinearLayout Layout100T1, @NonNull Button MapBtn,
+      @NonNull Button OkBtn, @NonNull Button OnOffBtn, @NonNull TextView TX100T1,
+      @NonNull TextView TX100T2) {
     this.rootView = rootView;
+    this.AirConditionerImg = AirConditionerImg;
     this.ControlBtn = ControlBtn;
     this.DataBtn = DataBtn;
+    this.InputValue = InputValue;
+    this.Layout100T1 = Layout100T1;
     this.MapBtn = MapBtn;
-    this.ReloadBtn = ReloadBtn;
-    this.webview = webview;
+    this.OkBtn = OkBtn;
+    this.OnOffBtn = OnOffBtn;
+    this.TX100T1 = TX100T1;
+    this.TX100T2 = TX100T2;
   }
 
   @Override
@@ -73,6 +98,12 @@ public final class ActivityControlBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.AirConditioner_Img;
+      ImageView AirConditionerImg = ViewBindings.findChildViewById(rootView, id);
+      if (AirConditionerImg == null) {
+        break missingId;
+      }
+
       id = R.id.Control_Btn;
       Button ControlBtn = ViewBindings.findChildViewById(rootView, id);
       if (ControlBtn == null) {
@@ -85,26 +116,50 @@ public final class ActivityControlBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.InputValue;
+      EditText InputValue = ViewBindings.findChildViewById(rootView, id);
+      if (InputValue == null) {
+        break missingId;
+      }
+
+      id = R.id.Layout100T_1;
+      LinearLayout Layout100T1 = ViewBindings.findChildViewById(rootView, id);
+      if (Layout100T1 == null) {
+        break missingId;
+      }
+
       id = R.id.Map_Btn;
       Button MapBtn = ViewBindings.findChildViewById(rootView, id);
       if (MapBtn == null) {
         break missingId;
       }
 
-      id = R.id.Reload_Btn;
-      Button ReloadBtn = ViewBindings.findChildViewById(rootView, id);
-      if (ReloadBtn == null) {
+      id = R.id.Ok_Btn;
+      Button OkBtn = ViewBindings.findChildViewById(rootView, id);
+      if (OkBtn == null) {
         break missingId;
       }
 
-      id = R.id.webview;
-      WebView webview = ViewBindings.findChildViewById(rootView, id);
-      if (webview == null) {
+      id = R.id.OnOff_Btn;
+      Button OnOffBtn = ViewBindings.findChildViewById(rootView, id);
+      if (OnOffBtn == null) {
         break missingId;
       }
 
-      return new ActivityControlBinding((RelativeLayout) rootView, ControlBtn, DataBtn, MapBtn,
-          ReloadBtn, webview);
+      id = R.id.TX100T_1;
+      TextView TX100T1 = ViewBindings.findChildViewById(rootView, id);
+      if (TX100T1 == null) {
+        break missingId;
+      }
+
+      id = R.id.TX100T_2;
+      TextView TX100T2 = ViewBindings.findChildViewById(rootView, id);
+      if (TX100T2 == null) {
+        break missingId;
+      }
+
+      return new ActivityControlBinding((RelativeLayout) rootView, AirConditionerImg, ControlBtn,
+          DataBtn, InputValue, Layout100T1, MapBtn, OkBtn, OnOffBtn, TX100T1, TX100T2);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

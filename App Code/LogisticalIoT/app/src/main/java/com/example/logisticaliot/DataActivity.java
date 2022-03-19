@@ -64,23 +64,24 @@ public class DataActivity extends AppCompatActivity {
 //        GetLightIntensity l = new GetLightIntensity();
 //        l.getJSONArray(DataActivity.this,AnhsangView);
 
-//        new CountDownTimer(1000000000,1000) {
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//                GetInformation f = new GetInformation();
-//                f.getJSONArray(DataActivity.this,ThongtinView);
+        new CountDownTimer(1000000000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                GetInformation f = new GetInformation();
+                f.getJSONArray(DataActivity.this,ThongtinView);
 //                GetTemperature t = new GetTemperature ();
 //                t.getJSONArray(DataActivity.this,NhietdoView);
 //                GetHumidity h = new GetHumidity();
 //                h.getJSONArray(DataActivity.this,DoamView);
-//            }
-//            @Override
-//            public void onFinish() {
-//
-//            }
-//        }.start();
+                GetData(Urls.GETDATA_URL);
+            }
+            @Override
+            public void onFinish() {
 
-        GetData(Urls.GETDATA_URL);
+            }
+        }.start();
+
+
 
 
         ReloadBtn.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +105,7 @@ public class DataActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(DataActivity.this, MapActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
         HistoryBtn.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +122,7 @@ public class DataActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(DataActivity.this, ControlActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
