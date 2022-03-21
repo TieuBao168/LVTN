@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.logisticaliot.LoginActivity;
 import com.example.logisticaliot.Urls;
 
 import org.json.JSONArray;
@@ -22,7 +23,7 @@ public class GetLightIntensity {
         RequestQueue queue = Volley.newRequestQueue(context);
         // 2.truyền đường dẫn vào request
         String url = "https://iotlogistics.000webhostapp.com/App/getdata.php";
-        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, Urls.GETDATA_URL,null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, LoginActivity.GetData_Url,null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 // chuyen mang thanh chuoi

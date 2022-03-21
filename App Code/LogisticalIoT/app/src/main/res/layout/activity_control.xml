@@ -55,8 +55,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="25dp"
                 android:backgroundTint="@color/Original"
-                android:text="ON"
-                />
+                android:text="@string/on" />
         </LinearLayout>
 
         <TextView
@@ -81,7 +80,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="#CDD0D7E4"
-            android:hint="  Nhập giá trị độ C"
+            android:hint=" Nhập giá trị *C"
             android:inputType="number"
             android:textColorHint="@color/Gray"
             android:textSize="20dp" />
@@ -95,6 +94,18 @@
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/Original"
             android:text="OK" />
+
+        <TextView
+            android:id="@+id/Memo_Textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Ok_Btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/alatsi"
+            android:text="Chưa thiết lập giá trị !!!"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
 
         <!--        <TextView-->
         <!--            android:id="@+id/TX100T_4"-->

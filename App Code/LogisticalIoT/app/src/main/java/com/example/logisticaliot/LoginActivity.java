@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText TaikhoanText,MatkhauText,EmailText;
     Button LoginBtn, RegisterBtn;
     ProgressDialog progressDialog;
+    public static String GetData_Url = "", Control_Url ="", ControlSetup_Url="";
 
 //    String url="https://iotlogistics.000webhostapp.com/App/register.php";
 //    String urls ="https://iotlogistics.000webhostapp.com/App/login.php";
@@ -64,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UserLoginProcces();
-
             }
         });
     }
@@ -83,7 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
                                 String result = jsonObject.getString("status");
-                                if (result.equals("success")){
+                                if (result.equals("success1")){
+                                    GetData_Url=Urls.GETDATA1_URL;
+                                    Control_Url=Urls.CONTROL1_URL;
+                                    ControlSetup_Url=Urls.CONTROLSETUP1_URL;
                                     progressDialog.dismiss();
 //                                    message("Thanhf coong");
 
@@ -91,7 +94,16 @@ public class LoginActivity extends AppCompatActivity {
                                     intent.setClass(LoginActivity.this, MapActivity.class);
                                     startActivity(intent);
 
-                                }else {
+                                }else if(result.equals("success2")){
+                                    GetData_Url=Urls.GETDATA2_URL;
+                                    Control_Url=Urls.CONTROL2_URL;
+                                    ControlSetup_Url=Urls.CONTROLSETUP2_URL;
+                                    progressDialog.dismiss();
+                                    Intent intent = new Intent();
+                                    intent.setClass(LoginActivity.this, MapActivity.class);
+                                    startActivity(intent);
+                                }
+                                else {
                                     progressDialog.dismiss();
                                     message("tài khoản hoặc mật khẩu không chính xác");
                                 }

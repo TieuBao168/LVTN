@@ -68,11 +68,11 @@
             android:layout_below="@+id/TT_TV6"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="Nhiệt độ"
+            android:fontFamily="@font/suez_one"
+            android:text="Nhiệt độ (*C)"
             android:textColor="@color/Original"
             android:textSize="25dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/suez_one"/>
+            android:textStyle="bold" />
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/NhietdoChart"
@@ -91,7 +91,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
             android:fontFamily="@font/suez_one"
-            android:text="Độ ẩm"
+            android:text="Độ ẩm (%)"
             android:textColor="@color/Original"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -130,19 +130,19 @@
             android:backgroundTint="@color/Gray"
             android:text="Lịch sử"
             android:textColor="@color/black"
-            android:textStyle="bold" />
+            />
         </RelativeLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/Reload_Btn"
-        android:layout_width="130dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/Control_Btn"
-        android:layout_alignRight="@+id/Control_Btn"
-        android:backgroundTint="@color/Gray"
-        android:text="Reload"
-        app:icon="@android:drawable/stat_notify_sync" />
+<!--    <Button-->
+<!--        android:id="@+id/Reload_Btn"-->
+<!--        android:layout_width="130dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_above="@+id/Control_Btn"-->
+<!--        android:layout_alignRight="@+id/Control_Btn"-->
+<!--        android:backgroundTint="@color/Gray"-->
+<!--        android:text="Reload"-->
+<!--        app:icon="@android:drawable/stat_notify_sync" />-->
 
     <Button
         android:id="@+id/Map_Btn"

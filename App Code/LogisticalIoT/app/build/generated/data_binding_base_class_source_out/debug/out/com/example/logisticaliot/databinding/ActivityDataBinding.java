@@ -46,9 +46,6 @@ public final class ActivityDataBinding implements ViewBinding {
   public final TextView NhietdoView;
 
   @NonNull
-  public final Button ReloadBtn;
-
-  @NonNull
   public final TextView TTTV5;
 
   @NonNull
@@ -60,8 +57,8 @@ public final class ActivityDataBinding implements ViewBinding {
   private ActivityDataBinding(@NonNull RelativeLayout rootView, @NonNull Button ControlBtn,
       @NonNull Button DataBtn, @NonNull LineChart DoamChart, @NonNull TextView DoamView,
       @NonNull Button HistoryBtn, @NonNull Button MapBtn, @NonNull LineChart NhietdoChart,
-      @NonNull TextView NhietdoView, @NonNull Button ReloadBtn, @NonNull TextView TTTV5,
-      @NonNull TextView TTTV6, @NonNull TextView ThongtinView) {
+      @NonNull TextView NhietdoView, @NonNull TextView TTTV5, @NonNull TextView TTTV6,
+      @NonNull TextView ThongtinView) {
     this.rootView = rootView;
     this.ControlBtn = ControlBtn;
     this.DataBtn = DataBtn;
@@ -71,7 +68,6 @@ public final class ActivityDataBinding implements ViewBinding {
     this.MapBtn = MapBtn;
     this.NhietdoChart = NhietdoChart;
     this.NhietdoView = NhietdoView;
-    this.ReloadBtn = ReloadBtn;
     this.TTTV5 = TTTV5;
     this.TTTV6 = TTTV6;
     this.ThongtinView = ThongtinView;
@@ -152,12 +148,6 @@ public final class ActivityDataBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.Reload_Btn;
-      Button ReloadBtn = ViewBindings.findChildViewById(rootView, id);
-      if (ReloadBtn == null) {
-        break missingId;
-      }
-
       id = R.id.TT_TV5;
       TextView TTTV5 = ViewBindings.findChildViewById(rootView, id);
       if (TTTV5 == null) {
@@ -177,8 +167,7 @@ public final class ActivityDataBinding implements ViewBinding {
       }
 
       return new ActivityDataBinding((RelativeLayout) rootView, ControlBtn, DataBtn, DoamChart,
-          DoamView, HistoryBtn, MapBtn, NhietdoChart, NhietdoView, ReloadBtn, TTTV5, TTTV6,
-          ThongtinView);
+          DoamView, HistoryBtn, MapBtn, NhietdoChart, NhietdoView, TTTV5, TTTV6, ThongtinView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

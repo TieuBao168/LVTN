@@ -42,6 +42,9 @@ public final class ActivityControlBinding implements ViewBinding {
   public final Button MapBtn;
 
   @NonNull
+  public final TextView MemoTextview;
+
+  @NonNull
   public final Button OkBtn;
 
   @NonNull
@@ -56,8 +59,8 @@ public final class ActivityControlBinding implements ViewBinding {
   private ActivityControlBinding(@NonNull RelativeLayout rootView,
       @NonNull ImageView AirConditionerImg, @NonNull Button ControlBtn, @NonNull Button DataBtn,
       @NonNull EditText InputValue, @NonNull LinearLayout Layout100T1, @NonNull Button MapBtn,
-      @NonNull Button OkBtn, @NonNull Button OnOffBtn, @NonNull TextView TX100T1,
-      @NonNull TextView TX100T2) {
+      @NonNull TextView MemoTextview, @NonNull Button OkBtn, @NonNull Button OnOffBtn,
+      @NonNull TextView TX100T1, @NonNull TextView TX100T2) {
     this.rootView = rootView;
     this.AirConditionerImg = AirConditionerImg;
     this.ControlBtn = ControlBtn;
@@ -65,6 +68,7 @@ public final class ActivityControlBinding implements ViewBinding {
     this.InputValue = InputValue;
     this.Layout100T1 = Layout100T1;
     this.MapBtn = MapBtn;
+    this.MemoTextview = MemoTextview;
     this.OkBtn = OkBtn;
     this.OnOffBtn = OnOffBtn;
     this.TX100T1 = TX100T1;
@@ -134,6 +138,12 @@ public final class ActivityControlBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.Memo_Textview;
+      TextView MemoTextview = ViewBindings.findChildViewById(rootView, id);
+      if (MemoTextview == null) {
+        break missingId;
+      }
+
       id = R.id.Ok_Btn;
       Button OkBtn = ViewBindings.findChildViewById(rootView, id);
       if (OkBtn == null) {
@@ -159,7 +169,8 @@ public final class ActivityControlBinding implements ViewBinding {
       }
 
       return new ActivityControlBinding((RelativeLayout) rootView, AirConditionerImg, ControlBtn,
-          DataBtn, InputValue, Layout100T1, MapBtn, OkBtn, OnOffBtn, TX100T1, TX100T2);
+          DataBtn, InputValue, Layout100T1, MapBtn, MemoTextview, OkBtn, OnOffBtn, TX100T1,
+          TX100T2);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

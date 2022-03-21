@@ -1273,7 +1273,6 @@ color common_google_signin_btn_text_light_disabled
 color common_google_signin_btn_text_light_focused
 color common_google_signin_btn_text_light_pressed
 color common_google_signin_btn_tint
-color custom_color_navigation
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
 color design_dark_default_color_background
@@ -2595,10 +2594,8 @@ font paytone_one
 font suez_one
 id ALT
 id AirConditioner_Img
-id AngsangView
 id BOTTOM_END
 id BOTTOM_START
-id Bottom_nav
 id CTRL
 id Control_Btn
 id DataBtn
@@ -2617,6 +2614,7 @@ id META
 id MapBtn
 id Map_Btn
 id Matkhautext
+id Memo_Textview
 id NO_DEBUG
 id Nhietdo
 id Nhietdo1
@@ -2626,7 +2624,6 @@ id Ok_Btn
 id OnOff_Btn
 id Registerbtn
 id ReloadBtn
-id Reload_Btn
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -3107,7 +3104,6 @@ id up
 id useLogo
 id vertical_only
 id view_offset_helper
-id view_pager
 id view_transition
 id view_tree_lifecycle_owner
 id view_tree_saved_state_registry_owner
@@ -3216,7 +3212,6 @@ layout activity_display
 layout activity_history_list
 layout activity_history_view
 layout activity_login
-layout activity_main
 layout activity_map
 layout activity_register
 layout custom_dialog
@@ -3235,8 +3230,6 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout fragment_data
-layout fragment_map
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -3471,6 +3464,7 @@ string mtrl_picker_toggle_to_day_selection
 string mtrl_picker_toggle_to_text_input_mode
 string mtrl_picker_toggle_to_year_selection
 string mtrl_timepicker_confirm
+string on
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through

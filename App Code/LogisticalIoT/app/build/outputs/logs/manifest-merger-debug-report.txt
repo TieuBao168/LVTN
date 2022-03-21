@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-65:12
-INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-65:12
-INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-65:12
-INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-65:12
+ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-60:12
 MERGED from [androidx.databinding:viewbinding:7.0.3] C:\Users\Asus\.gradle\caches\transforms-3\aedac3ef7d5f2c617ead8656bf92c449\transformed\jetified-viewbinding-7.0.3\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\Asus\.gradle\caches\transforms-3\e28af2a57da205d1991628495b66e5fc\transformed\material-1.5.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\Asus\.gradle\caches\transforms-3\a33d520c58fa7860ced27355a344e679\transformed\constraintlayout-2.1.3\AndroidManifest.xml:2:1-11:12
@@ -56,22 +56,22 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\User
 MERGED from [androidx.print:print:1.0.0] C:\Users\Asus\.gradle\caches\transforms-3\998ecad2e598076d0444e5b886cc28b2\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Asus\.gradle\caches\transforms-3\511e2a36f18b29fdf3f425e3962668f8\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\Asus\.gradle\caches\transforms-3\abd986d958258d7e8503cbe4ed7e75cb\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
-INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-65:12
-INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-65:12
-INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-65:12
+INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-60:12
 	package
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:4:5-40
 		INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml
 		INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-65:12
+		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-60:12
 		INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-65:12
+		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:1-60:12
 		INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:2:11-69
@@ -102,7 +102,7 @@ ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidMa
 	android:name
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:11:19-63
 application
-ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:13:5-63:19
+ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:13:5-58:19
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\Asus\.gradle\caches\transforms-3\e28af2a57da205d1991628495b66e5fc\transformed\material-1.5.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\Asus\.gradle\caches\transforms-3\e28af2a57da205d1991628495b66e5fc\transformed\material-1.5.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\Asus\.gradle\caches\transforms-3\a33d520c58fa7860ced27355a344e679\transformed\constraintlayout-2.1.3\AndroidManifest.xml:9:5-20
@@ -157,37 +157,37 @@ category#android.intent.category.LAUNCHER
 ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:26:17-77
 	android:name
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:26:27-74
-activity#com.example.logisticaliot.MainAcitivity
-ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:29:9-33:20
-	android:exported
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:31:13-36
-	tools:ignore
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:32:13-45
-	android:name
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:30:13-42
 meta-data#com.google.android.geo.API_KEY
-ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:34:9-36:51
+ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:29:9-31:51
 	android:value
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:36:13-48
+		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:31:13-48
 	android:name
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:35:13-58
+		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:30:13-58
 activity#com.example.logisticaliot.MapActivity
+ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:33:9-37:20
+	android:exported
+		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:35:13-36
+	tools:ignore
+		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:36:13-45
+	android:name
+		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:34:13-40
+activity#com.example.logisticaliot.DataActivity
 ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:38:9-42:20
 	android:exported
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:40:13-36
 	tools:ignore
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:41:13-45
 	android:name
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:39:13-40
-activity#com.example.logisticaliot.DataActivity
+		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:39:13-41
+activity#com.example.logisticaliot.HistoryActivity
 ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:43:9-47:20
 	android:exported
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:45:13-36
 	tools:ignore
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:46:13-45
 	android:name
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:44:13-41
-activity#com.example.logisticaliot.HistoryActivity
+		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:44:13-44
+activity#com.example.logisticaliot.ControlActivity
 ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:48:9-52:20
 	android:exported
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:50:13-36
@@ -195,7 +195,7 @@ ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidMa
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:51:13-45
 	android:name
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:49:13-44
-activity#com.example.logisticaliot.ControlActivity
+activity#com.example.logisticaliot.DisplayActivity
 ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:53:9-57:20
 	android:exported
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:55:13-36
@@ -203,14 +203,6 @@ ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidMa
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:56:13-45
 	android:name
 		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:54:13-44
-activity#com.example.logisticaliot.DisplayActivity
-ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:58:9-62:20
-	android:exported
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:60:13-36
-	tools:ignore
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:61:13-45
-	android:name
-		ADDED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml:59:13-44
 uses-sdk
 INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\LVTN\SourceCode_LVTN\App Code\LogisticalIoT\app\src\main\AndroidManifest.xml

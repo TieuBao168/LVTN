@@ -1,6 +1,7 @@
 package com.example.logisticaliot;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.logisticaliot.GetDataVolley.GetInformation;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +42,18 @@ public class HistoryActivity extends AppCompatActivity {
         adapter = new Thongtinadapter(this, R.layout.activity_history_view, arrayThongTin);
         LVThongtin.setAdapter(adapter);
 
-        Getdata(Urls.GETDATA_URL);
+        Getdata(LoginActivity.GetData_Url);
+        new CountDownTimer(1000000000,10000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Getdata(LoginActivity.GetData_Url);
+            }
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+
         BackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
