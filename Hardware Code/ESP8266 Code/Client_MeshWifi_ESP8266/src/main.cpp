@@ -25,23 +25,23 @@ void sendMessage(){
 
     // Serializing in JSON Format
   DynamicJsonDocument doc(1024);
-  float h = 50 + random(100)/10;
-  float t = 20 + random(100)/10;
-  int tt = random(2);
-  String stt = "OFF";
-  if (tt)
-  {
-    stt = "ON";
-  }
-  doc["Device"] = "DHTNode";
-  doc["Temp"] = t;
-  doc["Humi"] = h;
-  doc["Stt"] = stt;
+  // float h = 50 + random(100)/10;
+  // float t = 20 + random(100)/10;
+  // int tt = random(2);
+  // String stt = "OFF";
+  // if (tt)
+  // {
+  //   stt = "ON";
+  // }
+  doc["Device"] = "Node 2";
+  doc["Temp"] = temperature;
+  doc["Humi"] = humidity;
+  // doc["Stt"] = stt;
   String msg ;
   serializeJson(doc, msg);
 
   mesh.sendBroadcast( msg );
-  Serial.println("Message from DHT node: ");
+  Serial.println("Message from Node 2: ");
   Serial.println(msg);
   taskSendMessage.setInterval((TASK_SECOND * 1, TASK_SECOND * 10));
 }
@@ -78,8 +78,8 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
 
-  Serial.println();
-  Serial.println("Status\tHumidity (%)\tTemperature (C)\t(F)\tHeatIndex (C)\t(F)");
+  // Serial.println();
+  // Serial.println("Status\tHumidity (%)\tTemperature (C)\t(F)\tHeatIndex (C)\t(F)");
 
   dht.setup(D3, DHTesp::DHT11);
 
@@ -100,9 +100,9 @@ void loop() {
   // it will run the user scheduler as well
   mesh.update();
   
-  // delay(dht.getMinimumSamplingPeriod());
-  // humidity = dht.getHumidity();
-  // temperature = dht.getTemperature();
+  delay(dht.getMinimumSamplingPeriod());
+  humidity = round(dht.getHumidity()*100)/100;
+  temperature = roundf(dht.getTemperature()*100)/100;
 
   // Serial.print(dht.getStatusString());
   // Serial.print("\t");
