@@ -144,11 +144,11 @@
                 {
                     "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
-                        "startLines": "-1,-1,-1,-1,-1,-1,9,-1",
-                        "startColumns": "-1,-1,-1,-1,-1,-1,4,-1",
-                        "startOffsets": "-1,-1,-1,-1,-1,-1,439,-1",
-                        "endColumns": "-1,-1,-1,-1,-1,-1,33,-1",
-                        "endOffsets": "-1,-1,-1,-1,-1,-1,468,-1"
+                        "startLines": "-1,-1,-1,-1,-1,2,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1,4,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1,68,-1,-1",
+                        "endColumns": "-1,-1,-1,-1,-1,79,-1,-1",
+                        "endOffsets": "-1,-1,-1,-1,-1,143,-1,-1"
                     },
                     "to": {
                         "startLines": "1582,1583,1584,1613,1644,1673,1730,1738",

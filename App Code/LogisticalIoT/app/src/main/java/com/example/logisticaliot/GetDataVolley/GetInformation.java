@@ -35,18 +35,23 @@ public class GetInformation {
                         String DichDen = person.getString("Dich den");
                         String ThoiGian = person.getString("Thoi gian");
                         //dua vao chuoi
-                        strJson += "Tên: "+Ten+"\n";
-                        strJson += "SĐT: "+DienThoai+"\n";
-                        strJson += "Xuất phát: "+XuatPhat+"\n";
-                        strJson += "Đích đến: "+DichDen+"\n";
-                        strJson += "Thời gian khởi hành: "+ThoiGian+"\n";
+                        if((Ten.isEmpty())||(DienThoai.isEmpty())||(XuatPhat.isEmpty())||(DichDen.isEmpty())||(ThoiGian.isEmpty())){
+                            continue;
+                        }else {
+                            strJson += "Tên: " + Ten + "\n";
+                            strJson += "SĐT: " + DienThoai + "\n";
+                            strJson += "Xuất phát: " + XuatPhat + "\n";
+                            strJson += "Đích đến: " + DichDen + "\n";
+                            strJson += "Thời gian khởi hành: " + ThoiGian + "\n";
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    textView.setText(strJson);
+
                     if (strJson.isEmpty()){
                         continue;
                     }else{
+                        textView.setText(strJson);
                         break;
                     }
                 }

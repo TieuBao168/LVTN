@@ -8,7 +8,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,6 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -33,12 +41,12 @@ import java.util.List;
 public class DisplayActivity extends AppCompatActivity implements OnMapReadyCallback {
     GoogleMap mMap;
     private MarkerOptions latlng1, latlng2;
-    LatLng latlngOne, latlngTwo;
+    LatLng latlngOne, latlngTwo, xe1;
 
     Button DataBtn,ReloadBtn,ControlBtn;
 
     String strJson = "";
-    double A, B, Kinhdo, Vido;
+    Double A, B, Kinhdo1, Vido1, Kinhdo2, Vido2;
 
     String url = "https://iotlogistics.000webhostapp.com/App/getdata.php";
     @Override
@@ -57,21 +65,22 @@ public class DisplayActivity extends AppCompatActivity implements OnMapReadyCall
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
-        latlng1 = new MarkerOptions().position(new LatLng(27.658143, 85.3199503)).title("Location 1");
-        latlng2 = new MarkerOptions().position(new LatLng(27.667491, 85.3208583)).title("Location 2");
+//        latlng1 = new MarkerOptions().position(new LatLng(27.658143, 85.3199503)).title("Location 1");
+//        latlng2 = new MarkerOptions().position(new LatLng(27.667491, 85.3208583)).title("Location 2");
+//
+//        latlngOne = new LatLng(27.658143, 85.3199503);
+//        latlngTwo = new LatLng(27.667491, 85.3208583);
+//
+//        String url = getMapsApiDirectionsUrl(latlngOne, latlngTwo);
+//        ReadTask downloadTask = new ReadTask();
+//        // Start downloading json data from Google Directions API
+//        downloadTask.execute(url);
 
-        latlngOne = new LatLng(27.658143, 85.3199503);
-        latlngTwo = new LatLng(27.667491, 85.3208583);
-
-        String url = getMapsApiDirectionsUrl(latlngOne, latlngTwo);
-        ReadTask downloadTask = new ReadTask();
-        // Start downloading json data from Google Directions API
-        downloadTask.execute(url);
-
-        float[] results = new float[1];
-        Location.distanceBetween(latlngOne.latitude, latlngTwo.longitude,
-                latlngOne.latitude, latlngTwo.longitude,
-                results);
+//        float[] results = new float[1];
+//        Location.distanceBetween(latlngOne.latitude, latlngTwo.longitude,
+//                latlngOne.latitude, latlngTwo.longitude,
+//                results);
+//        Toast.makeText(DisplayActivity.this,results.toString(), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -80,61 +89,60 @@ public class DisplayActivity extends AppCompatActivity implements OnMapReadyCall
 //        A = 9.722166;
 //        B = 105.649804;
         mMap = map;
-        Log.d("mylog", "Added Markers");
-        mMap.addMarker(latlng1);
-        mMap.addMarker(latlng2);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlngOne, 15));
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        new CountDownTimer(1000000000,1000) {
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//                JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, Urls.GETDATA_URL, null, new Response.Listener<JSONArray>() {
-//                    @Override
-//                    public void onResponse(JSONArray response) {
-//                        // chuyen mang thanh chuoi
-//                        for (int i=response.length()-1; i<response.length(); i++){
-//                            try{
-//                                JSONObject person = response.getJSONObject(i);
-//                                Kinhdo = Double.parseDouble(person.getString("Kinh do"));
-//                                Vido = Double.parseDouble(person.getString("Vi do"));
+//        Log.d("mylog", "Added Markers");
+//        mMap.addMarker(latlng1);
+//        mMap.addMarker(latlng2);
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlngOne, 15));
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, Urls.GETDATA1_URL, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                // chuyen mang thanh chuoi
+                for (int i = response.length(); i>=0; i--) {
+                    try {
+                        JSONObject person = response.getJSONObject(i);
+                        String Kinhdo1s = person.getString("Kinh do xuat phat");
+                        Kinhdo1 = Double.parseDouble(Kinhdo1s);
+                        String Vido1s = person.getString("Vi do xuat phat");
+                        Vido1 = Double.parseDouble(Vido1s);
+
+                        Kinhdo2 = Double.parseDouble(person.getString("Kinh do dich den"));
+                        Vido2 = Double.parseDouble(person.getString("Vi do dich den"));
 //
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                        for (int i=response.length(); i>=0; i--){
-//                            try{
-//                                JSONObject person = response.getJSONObject(i);
-//                                String Ten = person.getString("Ten");
-//                                String XuatPhat = person.getString("Xuat phat");
-//                                String DichDen = person.getString("Dich den");
-//                                //dua vao chuoi
-//                                LatLng xe1 = new LatLng(Kinhdo,Vido);
-//                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 14));
-//                                mMap.addMarker(new MarkerOptions()
-//                                        .title("Xuất phát từ "+XuatPhat+" đến "+DichDen)
-//                                        .snippet("Tên tài xế: "+Ten)
-//                                        .position(xe1));
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-////                Toast.makeText(MapActivity.this,response.toString(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-////                Toast.makeText(MapActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//                queue.add(req);
-//            }
+////                        Toast.makeText(DisplayActivity.this,"adsf", Toast.LENGTH_SHORT).show();
 //
-//            @Override
-//            public void onFinish() {
-//
-//            }
-//        }.start();
+                        latlngOne = new LatLng(Kinhdo1, Vido1);
+                        latlngTwo = new LatLng(Kinhdo2, Vido2);
+
+                        if (Vido1s.isEmpty()){
+                            continue;
+                        }else{
+                            break;
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                LatLng xe1 = new LatLng(Kinhdo1, Vido1);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 15));
+                mMap.addMarker(new MarkerOptions().position(xe1));
+
+                String url = getMapsApiDirectionsUrl(latlngOne, latlngTwo);
+                ReadTask downloadTask = new ReadTask();
+                // Start downloading json data from Google Directions API
+                downloadTask.execute(url);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(MapActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(req);
     }
 
     private String  getMapsApiDirectionsUrl(LatLng origin,LatLng dest) {

@@ -40,7 +40,7 @@ public class DataActivity extends AppCompatActivity {
     Button MapBtn, ReloadBtn, ControlBtn, HistoryBtn;
     TextView ThongtinView, NhietdoView, DoamView, AnhsangView;
     LineChart lineChart_Nhietdo, lineChart_Doam;
-    Float Nhietdo, Doam;
+    Float Nhietdo, Doam, Value;
     String URL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,24 +55,13 @@ public class DataActivity extends AppCompatActivity {
         ControlBtn = findViewById(R.id.Control_Btn);
         HistoryBtn = findViewById(R.id.History_Btn);
         URL = LoginActivity.GetData_Url;
-//        GetInformation f = new GetInformation();
-//        f.getJSONArray(DataActivity.this,ThongtinView);
-//        GetTemperature t = new GetTemperature ();
-//        t.getJSONArray(DataActivity.this,NhietdoView);
-//        GetHumidity h = new GetHumidity();
-//        h.getJSONArray(DataActivity.this,DoamView);
-//        GetLightIntensity l = new GetLightIntensity();
-//        l.getJSONArray(DataActivity.this,AnhsangView);
 
         new CountDownTimer(1000000000,5000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                GetInformation f = new GetInformation();
-                f.getJSONArray(DataActivity.this,ThongtinView);
-//                GetTemperature t = new GetTemperature ();
-//                t.getJSONArray(DataActivity.this,NhietdoView);
-//                GetHumidity h = new GetHumidity();
-//                h.getJSONArray(DataActivity.this,DoamView);
+                GetInformation fetch = new GetInformation();
+                fetch.getJSONArray(DataActivity.this,ThongtinView);
+
                 GetChart(URL,lineChart_Nhietdo,"Nhiet do", Color.RED);
                 GetChart(URL,lineChart_Doam,"Do am", Color.BLUE);
             }
@@ -140,8 +129,12 @@ public class DataActivity extends AppCompatActivity {
                 for (int i=response.length()-10; i<response.length(); i++) {
                     try {
                         JSONObject person = response.getJSONObject(i);
-                        Nhietdo = Float.parseFloat(person.getString(type));
-                        dataSet.add(new Entry(i, Nhietdo));
+                        Value = Float.parseFloat(person.getString(type));
+                        if(Value!=null) {
+                            dataSet.add(new Entry(i, Value));
+                        }else{
+                            dataSet.add(new Entry(i, 0));
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

@@ -43,6 +43,7 @@ public class HistoryActivity extends AppCompatActivity {
         LVThongtin.setAdapter(adapter);
 
         Getdata(LoginActivity.GetData_Url);
+
         new CountDownTimer(1000000000,10000) {
             @Override
             public void onTick(long millisUntilFinished) {

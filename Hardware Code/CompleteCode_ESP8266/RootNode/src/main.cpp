@@ -25,6 +25,7 @@ int pm;
 // Kết nối Wifi
 #define ssid "P401"
 #define pass "cutieubao"
+const char* host = "http://iotlogistics.000webhostapp.com";
 #define Led_OnBoard 2
 byte stt_led = LOW;
 void Wifi_connect();
@@ -99,14 +100,42 @@ void setup() {
   mesh_setup();
 
   Wifi_connect();
+  
 
 }
 
 void loop() {
-  
   // put your main code here, to run repeatedly:
+
+  // Serial.println("Again again");
+  // delay(3000);
+
   GetCtr();
   mesh.update();
+
+  client.print(String("GET https://iotlogistics.000webhostapp.com/connect.php?") + 
+                          ("&temperature=") + Temperature +
+                          ("&humidity=") + Humidity +
+                          " HTTP/1.1\r\n" +
+                 "Host: " + host + "\r\n" +
+                 "Connection: close\r\n\r\n");
+    unsigned long timeout = millis();
+    while (client.available() == 0) {
+        if (millis() - timeout > 1000) {
+            Serial.println(">>> Client Timeout !");
+            client.stop();
+            return;
+        }
+    }
+
+    // Read all the lines of the reply from server and print them to Serial
+    while(client.available()) {
+        String line = client.readStringUntil('\r');
+        Serial.print(line);
+        
+    
+}
+  
   // delay(1000);
 }
 
@@ -156,7 +185,7 @@ void mesh_setup()
   // network (STATION_SSID)
   mesh.init(MESH_PREFIX, MESH_PASSWORD, MESH_PORT, WIFI_AP_STA, 6);
   mesh.onReceive(&receivedCallback);
-  // mesh.stationManual(ssid, pass);
+  mesh.stationManual(ssid, pass);
   mesh.setHostname(HOSTNAME);
   mesh.onNewConnection(&newConnectionCallback);
   mesh.onChangedConnections(&changedConnectionCallback);

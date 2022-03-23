@@ -18,10 +18,12 @@ com/example/logisticaliot/GetDataVolley/GetTemperature.java
  com.example.logisticaliot.GetDataVolley.GetTemperature
  com.example.logisticaliot.GetDataVolley.GetTemperature$1
  com.example.logisticaliot.GetDataVolley.GetTemperature$2
-com/example/logisticaliot/GetDataVolley/GetInformation.java
- com.example.logisticaliot.GetDataVolley.GetInformation
- com.example.logisticaliot.GetDataVolley.GetInformation$1
- com.example.logisticaliot.GetDataVolley.GetInformation$2
+com/example/logisticaliot/HistoryActivity.java
+ com.example.logisticaliot.HistoryActivity
+ com.example.logisticaliot.HistoryActivity$1
+ com.example.logisticaliot.HistoryActivity$2
+ com.example.logisticaliot.HistoryActivity$3
+ com.example.logisticaliot.HistoryActivity$4
 com/example/logisticaliot/Thongtinadapter.java
  com.example.logisticaliot.Thongtinadapter
  com.example.logisticaliot.Thongtinadapter$1
@@ -38,35 +40,22 @@ com/example/logisticaliot/databinding/ActivityControlBinding.java
  com.example.logisticaliot.databinding.ActivityControlBinding
 com/example/logisticaliot/databinding/ActivityDisplayBinding.java
  com.example.logisticaliot.databinding.ActivityDisplayBinding
-com/example/logisticaliot/HistoryActivity.java
- com.example.logisticaliot.HistoryActivity
- com.example.logisticaliot.HistoryActivity$1
- com.example.logisticaliot.HistoryActivity$2
- com.example.logisticaliot.HistoryActivity$3
- com.example.logisticaliot.HistoryActivity$4
+com/example/logisticaliot/databinding/ActivityMapBinding.java
+ com.example.logisticaliot.databinding.ActivityMapBinding
 com/example/logisticaliot/databinding/ActivityRegisterBinding.java
  com.example.logisticaliot.databinding.ActivityRegisterBinding
 com/example/logisticaliot/DisplayActivity.java
  com.example.logisticaliot.DisplayActivity
  com.example.logisticaliot.DisplayActivity$1
+ com.example.logisticaliot.DisplayActivity$2
  com.example.logisticaliot.DisplayActivity$MapHttpConnection
  com.example.logisticaliot.DisplayActivity$ParserTask
  com.example.logisticaliot.DisplayActivity$PathJSONParser
  com.example.logisticaliot.DisplayActivity$ReadTask
-com/example/logisticaliot/databinding/ActivityMapBinding.java
- com.example.logisticaliot.databinding.ActivityMapBinding
-com/example/logisticaliot/LoginActivity.java
- com.example.logisticaliot.LoginActivity
- com.example.logisticaliot.LoginActivity$1
- com.example.logisticaliot.LoginActivity$2
- com.example.logisticaliot.LoginActivity$3
- com.example.logisticaliot.LoginActivity$4
- com.example.logisticaliot.LoginActivity$5
- com.example.logisticaliot.LoginActivity$6
- com.example.logisticaliot.LoginActivity$6$1
- com.example.logisticaliot.LoginActivity$6$2
- com.example.logisticaliot.LoginActivity$6$3
- com.example.logisticaliot.LoginActivity$7
+com/example/logisticaliot/GetDataVolley/GetInformation.java
+ com.example.logisticaliot.GetDataVolley.GetInformation
+ com.example.logisticaliot.GetDataVolley.GetInformation$1
+ com.example.logisticaliot.GetDataVolley.GetInformation$2
 com/example/logisticaliot/DataActivity.java
  com.example.logisticaliot.DataActivity
  com.example.logisticaliot.DataActivity$1
@@ -95,3 +84,19 @@ com/example/logisticaliot/MapActivity.java
  com.example.logisticaliot.MapActivity$5
  com.example.logisticaliot.MapActivity$5$1
  com.example.logisticaliot.MapActivity$5$2
+ com.example.logisticaliot.MapActivity$MapHttpConnection
+ com.example.logisticaliot.MapActivity$ParserTask
+ com.example.logisticaliot.MapActivity$PathJSONParser
+ com.example.logisticaliot.MapActivity$ReadTask
+com/example/logisticaliot/LoginActivity.java
+ com.example.logisticaliot.LoginActivity
+ com.example.logisticaliot.LoginActivity$1
+ com.example.logisticaliot.LoginActivity$2
+ com.example.logisticaliot.LoginActivity$3
+ com.example.logisticaliot.LoginActivity$4
+ com.example.logisticaliot.LoginActivity$5
+ com.example.logisticaliot.LoginActivity$6
+ com.example.logisticaliot.LoginActivity$6$1
+ com.example.logisticaliot.LoginActivity$6$2
+ com.example.logisticaliot.LoginActivity$6$3
+ com.example.logisticaliot.LoginActivity$7
