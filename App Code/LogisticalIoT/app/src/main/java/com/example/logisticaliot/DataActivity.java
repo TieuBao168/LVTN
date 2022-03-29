@@ -7,7 +7,6 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,14 +16,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.logisticaliot.GetDataVolley.GetHumidity;
 import com.example.logisticaliot.GetDataVolley.GetInformation;
-import com.example.logisticaliot.GetDataVolley.GetLightIntensity;
-import com.example.logisticaliot.GetDataVolley.GetTemperature;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -71,21 +66,6 @@ public class DataActivity extends AppCompatActivity {
             }
         }.start();
 
-
-//        ReloadBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                GetInformation f = new GetInformation();
-//                // 2. lay mang -> chuyen thanh chuoi
-//                f.getJSONArray(DataActivity.this,ThongtinView);
-//                GetTemperature t = new GetTemperature ();
-//                t.getJSONArray(DataActivity.this,NhietdoView);
-//                GetHumidity h = new GetHumidity();
-//                h.getJSONArray(DataActivity.this,DoamView);
-//                GetLightIntensity l = new GetLightIntensity();
-//                l.getJSONArray(DataActivity.this,AnhsangView);
-//            }
-//        });
 
         MapBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2598,7 +2598,6 @@ id BOTTOM_END
 id BOTTOM_START
 id CTRL
 id Control_Btn
-id DataBtn
 id Data_Btn
 id Doam
 id Doam1
@@ -2611,7 +2610,6 @@ id Layout100T_1
 id Loginbtn
 id LvThongtin
 id META
-id MapBtn
 id Map_Btn
 id Matkhautext
 id Memo_Textview
@@ -2623,7 +2621,6 @@ id NhietdoView
 id Ok_Btn
 id OnOff_Btn
 id Registerbtn
-id ReloadBtn
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -3312,13 +3309,9 @@ layout text_view_with_theme_line_height
 layout text_view_without_line_height
 menu example_menu
 menu example_menu2
-menu menu_button_nav
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
-string Data
-string Map
-string Reload
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -3378,7 +3371,6 @@ string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
-string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string item_view_role_description
@@ -3472,7 +3464,6 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string search_menu_title
 string status_bar_notification_info_overflow
-string thongtin
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AndroidThemeColorAccentYellow

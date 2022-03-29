@@ -20,10 +20,6 @@
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_login.xml"
     },
     {
-        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_data.xml",
-        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\layout\\fragment_data.xml"
-    },
-    {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_register.xml",
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_register.xml"
     },
@@ -32,15 +28,7 @@
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_control.xml"
     },
     {
-        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_map.xml",
-        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\layout\\fragment_map.xml"
-    },
-    {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_display.xml",
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_display.xml"
-    },
-    {
-        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
-        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_main.xml"
     }
 ]

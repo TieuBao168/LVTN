@@ -22,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -44,12 +45,12 @@ import java.util.List;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
     GoogleMap mMap;
 
-    Button DataBtn,ReloadBtn,ControlBtn;
+    Button DataBtn,ControlBtn;
     Marker marker;
-    String strJson = "", TenTaiXe, DiaDiemXuatPhat, DiaDiemDichDen;
+    String TenTaiXe, DiaDiemXuatPhat, DiaDiemDichDen;
     Double Kinhdo_hientai, Vido_hientai, Kinhdo, Vido, Kinhdo_xp, Vido_xp, Kinhdo_dd, Vido_dd;
     LatLng Xuatphat, Dichden;
-    String toas, URL;
+    String URL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +58,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
         DataBtn = findViewById(R.id.Data_Btn);
-//        ReloadBtn = findViewById(R.id.ReloadBtn);
         ControlBtn = findViewById(R.id.Control_Btn);
 //        GetData(url);
 
         URL = LoginActivity.GetData_Url;
-//        GetLongitude f = new GetLongitude();
-//        f.getJSONArray(MapActivity.this,A);
+
         ControlBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,15 +86,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
         
-//        ReloadBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v){
-//                Intent intent = new Intent();
-//                intent.setClass(MapActivity.this, MapActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-        
     }
     
     @Override
@@ -105,19 +95,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap = map;
 
         RequestQueue queue = Volley.newRequestQueue(this);
-
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, URL, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 // chuyen mang thanh chuoi
-                for (int i = response.length(); i>=0; i--) {
+                for (int i=response.length(); i>=0; i--) {
                     try {
-                        JSONObject person = response.getJSONObject(i);
-
-                        String preKinhdo = person.getString("Kinh do");
-                        Kinhdo = Double.parseDouble(preKinhdo);
-                        String preVido = person.getString("Vi do");
-                        Vido = Double.parseDouble(preVido);
+                        JSONObject vitri = response.getJSONObject(i);
+                        String preKinhdo = vitri.getString("Kinh do");
+                        Kinhdo = Double.parseDouble(vitri.getString("Kinh do"));
+                        String preVido = vitri.getString("Vi do");
+                        Vido = Double.parseDouble(vitri.getString("Vi do"));
 
                         if ((preKinhdo.isEmpty())||(preVido.isEmpty())){
                             continue;
@@ -156,16 +144,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     }
                 }
 
-                if((Kinhdo!=null)&&(Vido!=null)) {
                     LatLng xe = new LatLng(Kinhdo, Vido);
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe, 15));
-                }
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe, 14));
 
                 if((Xuatphat!=null)&&(Dichden!=null)){
                     mMap.addMarker(new MarkerOptions().position(Xuatphat));
                     mMap.addMarker(new MarkerOptions().position(Dichden));
 
                     String url = getMapsApiDirectionsUrl(Xuatphat, Dichden);
+
                     ReadTask downloadTask = new ReadTask();
                     // Start downloading json data from Google Directions API
                     downloadTask.execute(url);
@@ -174,7 +161,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(MapActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
                 }
             });
                 queue.add(req);
@@ -192,9 +178,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             try{
                                 JSONObject vitri = response.getJSONObject(i);
                                 String preKinhdo = vitri.getString("Kinh do");
-                                Kinhdo = Double.parseDouble(preKinhdo);
+                                Kinhdo = Double.parseDouble(vitri.getString("Kinh do"));
                                 String preVido = vitri.getString("Vi do");
-                                Vido = Double.parseDouble(preVido);
+                                Vido = Double.parseDouble(vitri.getString("Vi do"));
 
                                 if ((preKinhdo.isEmpty())||(preVido.isEmpty())){
                                     continue;
@@ -214,52 +200,47 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 DiaDiemDichDen = person.getString("Dich den");
                                 //dua vao chuoi
 
-//                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 14));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
 
-                        if((Kinhdo!=null)&&(Vido!=null)) {
+//                        if((Kinhdo!=null)&&(Vido!=null)) {
                             LatLng xe_hientai = new LatLng(Kinhdo, Vido);
 
                             if (marker != null) {
                                 Kinhdo_hientai = marker.getPosition().latitude;
                                 Vido_hientai = marker.getPosition().longitude;
-//                                    toas = A.toString() + "," + Kinhdo.toString()+"|"+B.toString()+","+Vido.toString();
                                 if ((!Kinhdo_hientai.equals(Kinhdo)) || (!Vido_hientai.equals(Vido))) {
-//                                        Toast.makeText(MapActivity.this,toas, Toast.LENGTH_SHORT).show();
                                     marker.remove();
                                     marker = mMap.addMarker(new MarkerOptions()
                                             .title("Xuất phát từ " + DiaDiemXuatPhat + " đến " + DiaDiemDichDen)
                                             .snippet("Tên tài xế: " + TenTaiXe)
-                                            .position(xe_hientai));
+                                            .position(xe_hientai)
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                                    );
 
                                 }
                             } else {
                                 marker = mMap.addMarker(new MarkerOptions()
                                         .title("Xuất phát từ " + DiaDiemXuatPhat + " đến " + DiaDiemDichDen)
                                         .snippet("Tên tài xế: " + TenTaiXe)
-                                        .position(xe_hientai));
+                                        .position(xe_hientai)
+                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                                );
                             }
                         }
-//                Toast.makeText(MapActivity.this,response.toString(), Toast.LENGTH_SHORT).show();
-                    }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(MapActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
                     }
                 });
                 queue1.add(req1);
             }
-
             @Override
             public void onFinish() {
-
             }
         }.start();
-
 
     }
 

@@ -8,12 +8,12 @@
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_history_view.xml"
     },
     {
-        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\font_asul.ttf.flat",
-        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\font\\asul.ttf"
-    },
-    {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\font_paytone_one.ttf.flat",
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\font\\paytone_one.ttf"
+    },
+    {
+        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\font_asul.ttf.flat",
+        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\font\\asul.ttf"
     },
     {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_display.xml.flat",
@@ -38,10 +38,6 @@
     {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\drawable_background.jpg.flat",
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\drawable\\background.jpg"
-    },
-    {
-        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\menu_menu_button_nav.xml.flat",
-        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\menu\\menu_button_nav.xml"
     },
     {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
@@ -128,12 +124,12 @@
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_map.xml"
     },
     {
-        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\font_baloo.ttf.flat",
-        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\font\\baloo.ttf"
-    },
-    {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\anim_slide_in_right.xml.flat",
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\anim\\slide_in_right.xml"
+    },
+    {
+        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\font_baloo.ttf.flat",
+        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\font\\baloo.ttf"
     },
     {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",

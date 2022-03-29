@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Logistical IoT</string>
     <string name="map_api_key">AIzaSyBsCX5m4K8jlWX_Yc7YQ4mNH6jRdfhHEQw</string>
-    <string name="Map">Map</string>
-    <string name="Data">Data</string>
-    <string name="thongtin">Thong tin</string>
-    <string name="Reload">Reload</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+<!--    <string name="map_api_key">AIzaSyCv5LNsiSXeR2qmDejQKhL2treYUo8NfV4</string>-->
+<!--    <string name="Map">Map</string>-->
+<!--    <string name="Data">Data</string>-->
+<!--    <string name="thongtin">Thong tin</string>-->
+<!--    <string name="Reload">Reload</string>-->
+<!--    &lt;!&ndash; TODO: Remove or change this placeholder text &ndash;&gt;-->
+<!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
     <string name="on">ON</string>
 </resources>

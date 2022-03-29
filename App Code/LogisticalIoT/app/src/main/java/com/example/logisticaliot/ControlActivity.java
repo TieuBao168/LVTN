@@ -2,13 +2,10 @@ package com.example.logisticaliot;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.CountDownTimer;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,39 +22,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.logisticaliot.GetDataVolley.GetHumidity;
-import com.example.logisticaliot.GetDataVolley.GetInformation;
-import com.example.logisticaliot.GetDataVolley.GetTemperature;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ControlActivity extends AppCompatActivity {
-    Button MapBtn,ReloadBtn, DataBtn, OnOffBtn, OkBtn;
-    TextView ThongtinView, NhietdoView, DoamView, MemoView;
+    Button MapBtn, DataBtn, OnOffBtn, OkBtn;
+    TextView MemoView;
     EditText InputValue;
-    WebView webView;
     ImageView AirConditionerImg;
     String Handle, Auto, Setup_Aut, Setup_Han;
 
@@ -68,8 +47,6 @@ public class ControlActivity extends AppCompatActivity {
         setContentView(R.layout.activity_control);
 
         MapBtn = findViewById(R.id.Map_Btn);
-//        ReloadBtn = findViewById(R.id.Reload_Btn);
-//        webView = findViewById(R.id.webview);
         DataBtn = findViewById(R.id.Data_Btn);
         OnOffBtn = findViewById(R.id.OnOff_Btn);
         OkBtn = findViewById(R.id.Ok_Btn);
@@ -78,26 +55,21 @@ public class ControlActivity extends AppCompatActivity {
         MemoView = findViewById(R.id.Memo_Textview);
 
 
-//        webView.setWebViewClient(new WebViewClient());
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        webView.loadUrl(Urls.WEBSERVER_URL);
-//
-//        ReloadBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                webView.setWebViewClient(new WebViewClient());
-//                webView.getSettings().setJavaScriptEnabled(true);
-//                webView.loadUrl(Urls.WEBSERVER_URL);
-//            }
-//        });
-
-        runOnUiThread(new Runnable() {
+        new CountDownTimer(1000000000,5000) {
             @Override
-            public void run() {
-                new docJson().execute(LoginActivity.ControlSetup_Url);
+            public void onTick(long millisUntilFinished) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        new docJson().execute(LoginActivity.ControlSetup_Url);
+                    }
+                });
             }
-        });
+            @Override
+            public void onFinish() {
 
+            }
+        }.start();
         OnOffBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,13 +217,4 @@ public class ControlActivity extends AppCompatActivity {
         return content.toString();
     }
 
-//    @Override
-//    public void onBackPressed(){
-//        if(webView.canGoBack()){
-//            webView.goBack();
-//        }
-//        else{
-//            super.onBackPressed();
-//        }
-//    }
 }
