@@ -32,7 +32,7 @@ void Wifi_connect();
 void Blink_led();
 
 // Đường dẫn file Back-end
-const char* pathGetCtr = "http://iotlogistics.000webhostapp.com/App/control/control.json";
+const char* pathGetCtr = "http://luanvanlogistic.highallnight.com/app/control1/control1.json";
 
 // Dùng để điều khiển Relay
 int skip=0;

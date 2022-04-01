@@ -94,55 +94,55 @@ public class DisplayActivity extends AppCompatActivity implements OnMapReadyCall
 //        mMap.addMarker(latlng2);
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlngOne, 15));
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, Urls.GETDATA1_URL, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                // chuyen mang thanh chuoi
-                for (int i = response.length(); i>=0; i--) {
-                    try {
-                        JSONObject person = response.getJSONObject(i);
-                        String Kinhdo1s = person.getString("Kinh do xuat phat");
-                        Kinhdo1 = Double.parseDouble(Kinhdo1s);
-                        String Vido1s = person.getString("Vi do xuat phat");
-                        Vido1 = Double.parseDouble(Vido1s);
-
-                        Kinhdo2 = Double.parseDouble(person.getString("Kinh do dich den"));
-                        Vido2 = Double.parseDouble(person.getString("Vi do dich den"));
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, Urls.GETDATA1_URL, null, new Response.Listener<JSONArray>() {
+//            @Override
+//            public void onResponse(JSONArray response) {
+//                // chuyen mang thanh chuoi
+//                for (int i = response.length(); i>=0; i--) {
+//                    try {
+//                        JSONObject person = response.getJSONObject(i);
+//                        String Kinhdo1s = person.getString("Kinh do xuat phat");
+//                        Kinhdo1 = Double.parseDouble(Kinhdo1s);
+//                        String Vido1s = person.getString("Vi do xuat phat");
+//                        Vido1 = Double.parseDouble(Vido1s);
 //
-////                        Toast.makeText(DisplayActivity.this,"adsf", Toast.LENGTH_SHORT).show();
+//                        Kinhdo2 = Double.parseDouble(person.getString("Kinh do dich den"));
+//                        Vido2 = Double.parseDouble(person.getString("Vi do dich den"));
+////
+//////                        Toast.makeText(DisplayActivity.this,"adsf", Toast.LENGTH_SHORT).show();
+////
+//                        latlngOne = new LatLng(Kinhdo1, Vido1);
+//                        latlngTwo = new LatLng(Kinhdo2, Vido2);
 //
-                        latlngOne = new LatLng(Kinhdo1, Vido1);
-                        latlngTwo = new LatLng(Kinhdo2, Vido2);
-
-                        if (Vido1s.isEmpty()){
-                            continue;
-                        }else{
-                            break;
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                LatLng xe1 = new LatLng(Kinhdo1, Vido1);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 15));
-                mMap.addMarker(new MarkerOptions().position(xe1));
-
-                String url = getMapsApiDirectionsUrl(latlngOne, latlngTwo);
-                ReadTask downloadTask = new ReadTask();
-                // Start downloading json data from Google Directions API
-                downloadTask.execute(url);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(MapActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        queue.add(req);
+//                        if (Vido1s.isEmpty()){
+//                            continue;
+//                        }else{
+//                            break;
+//                        }
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//                LatLng xe1 = new LatLng(Kinhdo1, Vido1);
+//                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe1, 15));
+//                mMap.addMarker(new MarkerOptions().position(xe1));
+//
+//                String url = getMapsApiDirectionsUrl(latlngOne, latlngTwo);
+//                ReadTask downloadTask = new ReadTask();
+//                // Start downloading json data from Google Directions API
+//                downloadTask.execute(url);
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+////                Toast.makeText(MapActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        queue.add(req);
     }
 
     private String  getMapsApiDirectionsUrl(LatLng origin,LatLng dest) {

@@ -35,23 +35,23 @@
 21
 22    <!-- Include required permissions for Google Maps API to run. -->
 23    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-23-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:23:5-79
-23-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:23:22-76
+23-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:23:5-79
+23-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:23:22-76
 24
 25    <uses-feature
-25-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:26:5-28:35
+25-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:26:5-28:35
 26        android:glEsVersion="0x00020000"
-26-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:27:9-41
+26-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:27:9-41
 27        android:required="true" />
-27-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:28:9-32
+27-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:28:9-32
 28
 29    <queries>
-29-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:30:5-34:15
+29-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:30:5-34:15
 30
 31        <!-- Needs to be explicitly declared on Android R+ -->
 32        <package android:name="com.google.android.apps.maps" />
-32-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:33:9-64
-32-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:33:18-61
+32-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:33:9-64
+32-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:33:18-61
 33    </queries>
 34
 35    <application
@@ -137,27 +137,27 @@
 80        </activity>
 81        <!-- Needs to be explicitly declared on P+ -->
 82        <uses-library
-82-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:39:9-41:40
+82-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:39:9-41:40
 83            android:name="org.apache.http.legacy"
-83-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:40:13-50
+83-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:40:13-50
 84            android:required="false" />
-84-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\Asus\.gradle\caches\transforms-3\90013a2d70c7cdac5ee28478607b5678\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:41:13-37
+84-->[com.google.android.gms:play-services-maps:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\d4caa067414bba39801ee5864208e2f9\transformed\jetified-play-services-maps-18.0.0\AndroidManifest.xml:41:13-37
 85
 86        <activity
-86-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Asus\.gradle\caches\transforms-3\7d19f89ad245d9f627f67ffc17dd7e15\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+86-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Asus\.gradle\caches\transforms-3\06f08a7c9eb92bee56db18779f31a479\transformed\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
 87            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-87-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Asus\.gradle\caches\transforms-3\7d19f89ad245d9f627f67ffc17dd7e15\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+87-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Asus\.gradle\caches\transforms-3\06f08a7c9eb92bee56db18779f31a479\transformed\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
 88            android:exported="false"
-88-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Asus\.gradle\caches\transforms-3\7d19f89ad245d9f627f67ffc17dd7e15\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+88-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Asus\.gradle\caches\transforms-3\06f08a7c9eb92bee56db18779f31a479\transformed\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
 89            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-89-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Asus\.gradle\caches\transforms-3\7d19f89ad245d9f627f67ffc17dd7e15\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+89-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Asus\.gradle\caches\transforms-3\06f08a7c9eb92bee56db18779f31a479\transformed\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
 90
 91        <meta-data
-91-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\4065ffa9f933b654ef0b655a200e3015\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+91-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Asus\.gradle\caches\transforms-3\5b4a5af03789cf1669cedf0b85ed5f41\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
 92            android:name="com.google.android.gms.version"
-92-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\4065ffa9f933b654ef0b655a200e3015\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+92-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Asus\.gradle\caches\transforms-3\5b4a5af03789cf1669cedf0b85ed5f41\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
 93            android:value="@integer/google_play_services_version" />
-93-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\Asus\.gradle\caches\transforms-3\4065ffa9f933b654ef0b655a200e3015\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+93-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Asus\.gradle\caches\transforms-3\5b4a5af03789cf1669cedf0b85ed5f41\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
 94
 95        <provider
 95-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Asus\.gradle\caches\transforms-3\beb1e8c1d1724370afa1be71eb324942\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20

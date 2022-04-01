@@ -8,12 +8,12 @@
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\layout\\activity_history_view.xml"
     },
     {
-        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\font_paytone_one.ttf.flat",
-        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\font\\paytone_one.ttf"
-    },
-    {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\font_asul.ttf.flat",
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\font\\asul.ttf"
+    },
+    {
+        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\font_paytone_one.ttf.flat",
+        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\font\\paytone_one.ttf"
     },
     {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_display.xml.flat",

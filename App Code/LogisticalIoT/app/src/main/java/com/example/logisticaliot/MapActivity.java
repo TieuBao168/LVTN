@@ -199,13 +199,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 DiaDiemXuatPhat = person.getString("Xuat phat");
                                 DiaDiemDichDen = person.getString("Dich den");
                                 //dua vao chuoi
-
+                                if ((TenTaiXe.isEmpty())||(DiaDiemXuatPhat.isEmpty())||(DiaDiemDichDen.isEmpty())){
+                                    continue;
+                                }else{
+                                    break;
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
 
-//                        if((Kinhdo!=null)&&(Vido!=null)) {
+                        if((Kinhdo!=null)&&(Vido!=null)) {
                             LatLng xe_hientai = new LatLng(Kinhdo, Vido);
 
                             if (marker != null) {
@@ -229,6 +233,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                                 );
                             }
+                        }
                         }
                 }, new Response.ErrorListener() {
                     @Override
