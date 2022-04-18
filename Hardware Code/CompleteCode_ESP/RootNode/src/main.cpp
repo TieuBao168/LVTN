@@ -8,8 +8,8 @@
 #include <painlessMesh.h>
 #include <string.h>
 
-SoftwareSerial mySerial(D3,D4);
-LiquidCrystal_I2C lcd(0x27,16,2); 
+// SoftwareSerial mySerial(D3,D4);
+// LiquidCrystal_I2C lcd(0x27,16,2); 
 
 SoftwareSerial ss(14,15); // The serial connection to the GPS device  (rx,tx)
 
@@ -22,22 +22,26 @@ int year , month , date, hour , minute , second;
 String date_str , time_str , lat_str , lng_str;
 int pm;
 
+// set pin numbers
+#define Relay D2    // the number of the pushbutton pin
+#define ledPin  D4       // the number of the LED pin
+
 // Kết nối Wifi
-#define ssid "P401"
-#define pass "cutieubao"
-const char* host = "http://iotlogistics.000webhostapp.com";
-#define Led_OnBoard 2
-byte stt_led = LOW;
+#define ssid "VuPhuong 1"
+#define pass "38115591"
+const char* host = "192.168.1.13";
+
+// byte stt_led = LOW;
 void Wifi_connect();
-void Blink_led();
+void SendtoDB();
+void ControlRelay();
 
 // Đường dẫn file Back-end
 const char* pathGetCtr = "http://luanvanlogistic.highallnight.com/app/control1/control1.json";
 
 // Dùng để điều khiển Relay
-int skip=0;
 void GetCtr();
-void CtrCMD(String payload);
+void CtrMode(String payload);
 String  payload,Pre_payload="";
 
 //Setup mạng mesh
@@ -55,31 +59,18 @@ painlessMesh mesh;
 
 // String apiKeyValue = "iotgateway2021";
 
-String Protocol, Device, Stt;
+String Protocol, Device, Stt, Mode;
+int NumMode;
 float Temp, Humi, Light_Lux;
 String data_rx="";
 uint32_t nodeID1, nodeID2 = 0;
 
 
-
-
-void SendWebPage();
-void relayon();
-void relayoff();
-void text();
 void datajson(String ND,String DA, String TT_relay, String AS, String CD);
-int TT_relay =1;
-int bien = 0;
-int Temperature=23;
-int Humidity=78;
-int anhsang=100;
-int caidat=100;
-int caidat1=100;
-void senddata();
-void capnhat();
-void xuly();
-void lcdd();
-void uartt();
+
+int Temperature=random(30);
+int Humidity=random(100);
+
 uint8_t str[]={};
 int Te,Hu;
 
@@ -97,6 +88,12 @@ void setup() {
   Serial.println("--------------------------------------------------------");
   Serial.println("----------------------Start here!-----------------------");
   
+  // initialize the pushbutton pin as an input
+  pinMode(Relay, OUTPUT);
+  // initialize the LED pin as an output
+  pinMode(ledPin, OUTPUT);
+
+  
   mesh_setup();
 
   Wifi_connect();
@@ -109,19 +106,24 @@ void loop() {
 
   // Serial.println("Again again");
   // delay(3000);
-
+  
   GetCtr();
   mesh.update();
+  SendtoDB();
+  
+  // delay(1000);
+}
 
-  client.print(String("GET https://iotlogistics.000webhostapp.com/connect.php?") + 
-                          ("&temperature=") + Temperature +
-                          ("&humidity=") + Humidity +
+void SendtoDB(){
+    client.print(String("GET http://luanvanlogistic.highallnight.com/connect.php?") + 
+                          ("&nhiet_do=") + Temperature +
+                          ("&do_am=") + Humidity +
                           " HTTP/1.1\r\n" +
                  "Host: " + host + "\r\n" +
                  "Connection: close\r\n\r\n");
     unsigned long timeout = millis();
     while (client.available() == 0) {
-        if (millis() - timeout > 1000) {
+        if (millis() - timeout > 5000) {
             Serial.println(">>> Client Timeout !");
             client.stop();
             return;
@@ -132,11 +134,7 @@ void loop() {
     while(client.available()) {
         String line = client.readStringUntil('\r');
         Serial.print(line);
-        
-    
-}
-  
-  // delay(1000);
+    }
 }
 
 void receivedCallback(const uint32_t &from, const String &msg)
@@ -163,14 +161,6 @@ void receivedCallback(const uint32_t &from, const String &msg)
 }
 void newConnectionCallback(uint32_t nodeId) {
     Serial.printf("--> startHere: New Connection, nodeId = %u\n", nodeId);
-    if(nodeID1 == 0){
-      nodeID1 = nodeId;
-    }
-    else
-    {
-      nodeID2 = nodeId;
-    }
-
 }
 void changedConnectionCallback() {
   Serial.printf("Changed connections\n");
@@ -206,7 +196,6 @@ void Wifi_connect()
     // Blink_led();
     delay(1000);
   }
-  digitalWrite(Led_OnBoard, LOW);
 
   Serial.println("");
   Serial.println("Wifi connected successfull!!!");
@@ -214,13 +203,6 @@ void Wifi_connect()
   WiFi.persistent(true);
   delay(1000);
 }
-
-// void Blink_led()
-// { 
-//   stt_led = !stt_led;
-//   digitalWrite(Led_OnBoard, stt_led);
-//   delay(250);
-// }
 
 void GetCtr()
 {
@@ -236,20 +218,15 @@ void GetCtr()
     http.end();  //Close connection
       if(payload != Pre_payload)
       {
-        Serial.println(payload);    //Print request response payload-chuoi json
+        // Serial.println(payload);    //Print request response payload-chuoi json
         Pre_payload = payload;
-        if(skip){
-          CtrCMD(payload);
-        }
-        skip=1;
+        CtrMode(payload);
       }
   }
 }
 
-void CtrCMD(String payload)
+void CtrMode(String payload)
 {
-  String DVCtr,DVStt="";
-
   DynamicJsonDocument cmdJson(1024);
   DeserializationError error = deserializeJson(cmdJson, payload);  
   if (error)
@@ -259,12 +236,30 @@ void CtrCMD(String payload)
   }
   else
   {
-    const char* name = cmdJson["Auto"];
-    DVCtr = String(name);
-    const char* TT = cmdJson["Handle"];
-    DVStt = String(TT);
-    Serial.println(DVCtr+'\t'+DVStt);
+    const char* TT = cmdJson["Mode"];
+    Mode = String(TT);
+    Serial.println(Mode);
+
+    ControlRelay();
   }   
+  
+}
 
-
+void ControlRelay(){
+  if (Mode == "ON" ){
+      digitalWrite(Relay, HIGH);
+      digitalWrite(ledPin, LOW);
+    } else if(Mode == "OFF"){
+      digitalWrite(Relay, LOW);
+      digitalWrite(ledPin, HIGH);
+    } else{
+      NumMode = atoi(Mode.c_str());
+      if(NumMode < 30){
+        digitalWrite(Relay, HIGH);
+        digitalWrite(ledPin, LOW);
+      } else{
+        digitalWrite(Relay, LOW);
+        digitalWrite(ledPin, HIGH);
+      }
+    }
 }

@@ -16,10 +16,8 @@ com/example/logisticaliot/databinding/ActivityHistoryListBinding.java
  com.example.logisticaliot.databinding.ActivityHistoryListBinding
 com/example/logisticaliot/databinding/ActivityControlBinding.java
  com.example.logisticaliot.databinding.ActivityControlBinding
-com/example/logisticaliot/GetDataVolley/GetInformation.java
- com.example.logisticaliot.GetDataVolley.GetInformation
- com.example.logisticaliot.GetDataVolley.GetInformation$1
- com.example.logisticaliot.GetDataVolley.GetInformation$2
+com/example/logisticaliot/databinding/ActivityDataBinding.java
+ com.example.logisticaliot.databinding.ActivityDataBinding
 com/example/logisticaliot/databinding/ActivityDisplayBinding.java
  com.example.logisticaliot.databinding.ActivityDisplayBinding
 com/example/logisticaliot/HistoryActivity.java
@@ -43,16 +41,18 @@ com/example/logisticaliot/Urls.java
  com.example.logisticaliot.Urls
 com/example/logisticaliot/databinding/ActivityMapBinding.java
  com.example.logisticaliot.databinding.ActivityMapBinding
-com/example/logisticaliot/databinding/ActivityDataBinding.java
- com.example.logisticaliot.databinding.ActivityDataBinding
-com/example/logisticaliot/DataActivity.java
- com.example.logisticaliot.DataActivity
- com.example.logisticaliot.DataActivity$1
- com.example.logisticaliot.DataActivity$2
- com.example.logisticaliot.DataActivity$3
- com.example.logisticaliot.DataActivity$4
- com.example.logisticaliot.DataActivity$5
- com.example.logisticaliot.DataActivity$6
+com/example/logisticaliot/LoginActivity.java
+ com.example.logisticaliot.LoginActivity
+ com.example.logisticaliot.LoginActivity$1
+ com.example.logisticaliot.LoginActivity$2
+ com.example.logisticaliot.LoginActivity$3
+ com.example.logisticaliot.LoginActivity$4
+ com.example.logisticaliot.LoginActivity$5
+ com.example.logisticaliot.LoginActivity$6
+ com.example.logisticaliot.LoginActivity$6$1
+ com.example.logisticaliot.LoginActivity$6$2
+ com.example.logisticaliot.LoginActivity$6$3
+ com.example.logisticaliot.LoginActivity$7
 com/example/logisticaliot/ControlActivity.java
  com.example.logisticaliot.ControlActivity
  com.example.logisticaliot.ControlActivity$1
@@ -78,15 +78,15 @@ com/example/logisticaliot/MapActivity.java
  com.example.logisticaliot.MapActivity$ParserTask
  com.example.logisticaliot.MapActivity$PathJSONParser
  com.example.logisticaliot.MapActivity$ReadTask
-com/example/logisticaliot/LoginActivity.java
- com.example.logisticaliot.LoginActivity
- com.example.logisticaliot.LoginActivity$1
- com.example.logisticaliot.LoginActivity$2
- com.example.logisticaliot.LoginActivity$3
- com.example.logisticaliot.LoginActivity$4
- com.example.logisticaliot.LoginActivity$5
- com.example.logisticaliot.LoginActivity$6
- com.example.logisticaliot.LoginActivity$6$1
- com.example.logisticaliot.LoginActivity$6$2
- com.example.logisticaliot.LoginActivity$6$3
- com.example.logisticaliot.LoginActivity$7
+com/example/logisticaliot/DataActivity.java
+ com.example.logisticaliot.DataActivity
+ com.example.logisticaliot.DataActivity$1
+ com.example.logisticaliot.DataActivity$2
+ com.example.logisticaliot.DataActivity$3
+ com.example.logisticaliot.DataActivity$4
+ com.example.logisticaliot.DataActivity$5
+ com.example.logisticaliot.DataActivity$6
+com/example/logisticaliot/GetDataVolley/GetInformation.java
+ com.example.logisticaliot.GetDataVolley.GetInformation
+ com.example.logisticaliot.GetDataVolley.GetInformation$1
+ com.example.logisticaliot.GetDataVolley.GetInformation$2

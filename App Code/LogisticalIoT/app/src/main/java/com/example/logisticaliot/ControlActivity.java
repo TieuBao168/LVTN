@@ -38,7 +38,7 @@ public class ControlActivity extends AppCompatActivity {
     TextView MemoView;
     EditText InputValue;
     ImageView AirConditionerImg;
-    String Handle, Auto, Setup_Aut, Setup_Han;
+    String Handle, Auto, Setup_Aut, Setup_Han, Mode, Setup_Mod;
 
     int[] img = {R.drawable.airconditioneropen, R.drawable.airconditionerclose};
     @Override
@@ -76,18 +76,18 @@ public class ControlActivity extends AppCompatActivity {
                 if(OnOffBtn.getText().toString().equals("ON")) {
                     OnOffBtn.setText("OFF");
                     OnOffBtn.setBackgroundColor(Color.RED);
-                    Handle = "ON"; Auto ="0";
+                    Mode = "ON";
                     AirConditionerImg.setImageResource(img[0]);
                     Toast.makeText(ControlActivity.this, "Đã mở thiết bị", Toast.LENGTH_SHORT).show();
-                    PushControl(Auto, Handle);
+                    PushControl(Mode);
                 }
                 else{
                     OnOffBtn.setText("ON");
                     OnOffBtn.setBackgroundColor(Color.BLUE);
-                    Handle = "OFF"; Auto ="0";
+                    Mode = "OFF";
                     AirConditionerImg.setImageResource(img[1]);
                     Toast.makeText(ControlActivity.this, "Đã tắt thiết bị", Toast.LENGTH_SHORT).show();
-                    PushControl(Auto, Handle);
+                    PushControl(Mode);
                 }
                 MemoView.setText("Chưa thiết lập giá trị !!!");
             }
@@ -96,17 +96,16 @@ public class ControlActivity extends AppCompatActivity {
         OkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Auto = InputValue.getText().toString();
-                if(Auto.isEmpty()){
+                Mode = InputValue.getText().toString();
+                if(Mode.isEmpty()){
                     Toast.makeText(ControlActivity.this, "Chưa nhập giá trị !!!", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(ControlActivity.this, "Đã cập nhật", Toast.LENGTH_SHORT).show();
-                    MemoView.setText("Giá trị đã thiết lặp: "+Auto+" *C");
+                    MemoView.setText("Giá trị đã thiết lặp: "+Mode+" *C");
                     OnOffBtn.setText("OFF");
                     OnOffBtn.setBackgroundColor(Color.RED);
-                    Handle = "ON";
                     AirConditionerImg.setImageResource(img[0]);
-                    PushControl(Auto, Handle);
+                    PushControl(Mode);
                 }
             }
         });
@@ -131,7 +130,7 @@ public class ControlActivity extends AppCompatActivity {
         });
     }
 
-    private void PushControl(String Aut, String Han){
+    private void PushControl( String Mod){
         StringRequest request = new StringRequest(Request.Method.POST, LoginActivity.Control_Url,
                 new Response.Listener<String>() {
                     @Override
@@ -148,8 +147,8 @@ public class ControlActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Auto",Aut);
-                params.put("Handle",Han);
+//                params.put("Auto",Aut);
+                params.put("Mode",Mod);
                 return params;
             }
         };
@@ -168,23 +167,20 @@ public class ControlActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             try {
                 JSONObject root = new JSONObject(s);
-                Setup_Aut = root.getString("Auto");
-                Setup_Han = root.getString("Handle");
+                Setup_Mod = root.getString("Mode");
 //                Toast.makeText(ControlActivity.this,Setup_Han, Toast.LENGTH_SHORT).show();
-                if(Setup_Aut.equals("0")) {
-                    if (Setup_Han.equals("OFF")) {
-                        OnOffBtn.setText("ON");
-                        OnOffBtn.setBackgroundColor(Color.BLUE);
-                        AirConditionerImg.setImageResource(img[1]);
-                        MemoView.setText("Chưa thiết lập giá trị !!!");
-                    } else {
-                        OnOffBtn.setText("OFF");
-                        OnOffBtn.setBackgroundColor(Color.RED);
-                        AirConditionerImg.setImageResource(img[0]);
-                        MemoView.setText("Chưa thiết lập giá trị !!!");
-                    }
-                }else{
-                    MemoView.setText("Giá trị đã thiết lặp: "+Setup_Aut+" *C");
+                if (Setup_Mod.equals("OFF")) {
+                    OnOffBtn.setText("ON");
+                    OnOffBtn.setBackgroundColor(Color.BLUE);
+                    AirConditionerImg.setImageResource(img[1]);
+                    MemoView.setText("Chưa thiết lập giá trị !!!");
+                } else if(Setup_Mod.equals("ON")){
+                    OnOffBtn.setText("OFF");
+                    OnOffBtn.setBackgroundColor(Color.RED);
+                    AirConditionerImg.setImageResource(img[0]);
+                    MemoView.setText("Chưa thiết lập giá trị !!!");
+                } else{
+                    MemoView.setText("Giá trị đã thiết lặp: "+Setup_Mod+" *C");
                     OnOffBtn.setText("OFF");
                     OnOffBtn.setBackgroundColor(Color.RED);
                     AirConditionerImg.setImageResource(img[0]);

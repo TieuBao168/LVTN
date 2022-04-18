@@ -102,14 +102,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 for (int i=response.length(); i>=0; i--) {
                     try {
                         JSONObject vitri = response.getJSONObject(i);
+
                         String preKinhdo = vitri.getString("Kinh do");
-                        Kinhdo = Double.parseDouble(vitri.getString("Kinh do"));
                         String preVido = vitri.getString("Vi do");
-                        Vido = Double.parseDouble(vitri.getString("Vi do"));
 
                         if ((preKinhdo.isEmpty())||(preVido.isEmpty())){
                             continue;
                         }else{
+                            Kinhdo = Double.parseDouble(vitri.getString("Kinh do"));
+                            Vido = Double.parseDouble(vitri.getString("Vi do"));
                             break;
                         }
 
@@ -120,22 +121,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 for (int i = response.length(); i>=0; i--) {
                     try {
                         JSONObject person = response.getJSONObject(i);
+
                         String preKinhdo_xp = person.getString("Kinh do xuat phat");
-                        Kinhdo_xp = Double.parseDouble(preKinhdo_xp);
                         String preVido_xp = person.getString("Vi do xuat phat");
-                        Vido_xp = Double.parseDouble(preVido_xp);
-
                         String preKinhdo_dd = person.getString("Kinh do dich den");
-                        Kinhdo_dd = Double.parseDouble(preKinhdo_dd);
                         String preVido_dd = person.getString("Vi do dich den");
-                        Vido_dd = Double.parseDouble(preVido_dd);
 
-                        Xuatphat = new LatLng(Kinhdo_xp, Vido_xp);
-                        Dichden = new LatLng(Kinhdo_dd, Vido_dd);
 
                         if ((preKinhdo_xp.isEmpty())||(preVido_xp.isEmpty())||(preKinhdo_dd.isEmpty())||(preVido_dd.isEmpty())){
                             continue;
                         }else{
+                            Kinhdo_xp = Double.parseDouble(preKinhdo_xp);
+                            Vido_xp = Double.parseDouble(preVido_xp);
+                            Kinhdo_dd = Double.parseDouble(preKinhdo_dd);
+                            Vido_dd = Double.parseDouble(preVido_dd);
                             break;
                         }
 
@@ -143,9 +142,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         e.printStackTrace();
                     }
                 }
+                Xuatphat = new LatLng(Kinhdo_xp, Vido_xp);
+                Dichden = new LatLng(Kinhdo_dd, Vido_dd);
 
-                    LatLng xe = new LatLng(Kinhdo, Vido);
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe, 14));
+                LatLng xe = new LatLng(Kinhdo, Vido);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xe, 14));
 
                 if((Xuatphat!=null)&&(Dichden!=null)){
                     mMap.addMarker(new MarkerOptions().position(Xuatphat));
@@ -177,14 +178,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         for (int i=response.length(); i>=0; i--){
                             try{
                                 JSONObject vitri = response.getJSONObject(i);
+
                                 String preKinhdo = vitri.getString("Kinh do");
-                                Kinhdo = Double.parseDouble(vitri.getString("Kinh do"));
                                 String preVido = vitri.getString("Vi do");
-                                Vido = Double.parseDouble(vitri.getString("Vi do"));
 
                                 if ((preKinhdo.isEmpty())||(preVido.isEmpty())){
                                     continue;
                                 }else{
+                                    Kinhdo = Double.parseDouble(vitri.getString("Kinh do"));
+                                    Vido = Double.parseDouble(vitri.getString("Vi do"));
                                     break;
                                 }
 

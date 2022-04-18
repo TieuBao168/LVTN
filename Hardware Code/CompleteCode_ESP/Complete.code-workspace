@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "LeafNode_ESP8266"
+		},
+		{
+			"path": "RootNode_ESP32"
+		},
+		{
+			"path": "..\\ESP8266 Code\\Server_MeshWifi_ESP8266"
+		},
+		{
+			"path": "..\\..\\..\\Code ESP\\Test Mesh\\Code Test mesh esp32\\node-test-root"
+		},
+		{
+			"path": "..\\..\\..\\Code ESP\\Test Mesh\\Code Test mesh esp8266\\Leaf Node"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"cmath": "cpp"
+		}
+	}
+}

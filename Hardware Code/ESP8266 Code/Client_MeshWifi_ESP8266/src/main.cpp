@@ -12,12 +12,11 @@ DHTesp dht;
 float humidity, temperature;
 int LState;
 //Pin Declaration
-#define LED D5 //Relay1
 
 Scheduler userScheduler; 
 painlessMesh  mesh;
 void sendMessage(); // Prototype so PlatformIO doesn't complain
-Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
+//Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
 
 void sendMessage(){
   Serial.println();
@@ -25,43 +24,27 @@ void sendMessage(){
 
     // Serializing in JSON Format
   DynamicJsonDocument doc(1024);
-  // float h = 50 + random(100)/10;
-  // float t = 20 + random(100)/10;
-  // int tt = random(2);
-  // String stt = "OFF";
-  // if (tt)
-  // {
-  //   stt = "ON";
-  // }
-  doc["Device"] = "Node 2";
-  doc["Temp"] = temperature;
-  doc["Humi"] = humidity;
-  // doc["Stt"] = stt;
-  String msg ;
-  serializeJson(doc, msg);
 
-  mesh.sendBroadcast( msg );
-  Serial.println("Message from Node 2: ");
+  doc["Node"] = 3;
+  doc["Temperature"] = temperature;
+  doc["Humidity"] = humidity;
+
+  String msg ;
+  serializeJson(doc, msg); 
+  uint32_t id = 3323046497; // ID of RootNode
+  mesh.sendSingle(id, msg);
+  Serial.println("Message from Node Leaf: ");
   Serial.println(msg);
-  taskSendMessage.setInterval((TASK_SECOND * 1, TASK_SECOND * 10));
+  //taskSendMessage.setInterval(TASK_SECOND * 5);
 }
 
 // Needed for painless library
 void receivedCallback( uint32_t from, String &msg ) {
   Serial.println();
   Serial.print("Message = ");Serial.println(msg);
-  String json;
-  DynamicJsonDocument doc(1024);
-  json = msg.c_str();
-  DeserializationError error = deserializeJson(doc, json);
-  if (error)
-  {
-    Serial.print("deserializeJson() failed: ");
-    Serial.println(error.c_str());
+  if(msg =="ok"){
+    sendMessage();
   }
-
-  LState = doc["Button"]; 
-  digitalWrite(LED, LState);
 }
 
 void newConnectionCallback(uint32_t nodeId) {
@@ -71,7 +54,7 @@ void changedConnectionCallback() {
   Serial.printf("Changed connections\n");
 }
 void nodeTimeAdjustedCallback(int32_t offset) {
-  Serial.printf("Adjusted time %u. Offset = %d\n", mesh.getNodeTime(), offset);
+  // Serial.printf("Adjusted time %u. Offset = %d\n", mesh.getNodeTime(), offset);
 }
 
 void setup() {
@@ -83,16 +66,14 @@ void setup() {
 
   dht.setup(D3, DHTesp::DHT11);
 
-  pinMode(LED, OUTPUT);
-
   mesh.setDebugMsgTypes( ERROR | STARTUP );  
   mesh.init( MESH_PREFIX, MESH_PASSWORD, &userScheduler, MESH_PORT );
   mesh.onReceive(&receivedCallback);
   mesh.onNewConnection(&newConnectionCallback);
   mesh.onChangedConnections(&changedConnectionCallback);
   mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
-  userScheduler.addTask( taskSendMessage );
-  taskSendMessage.enable();
+  // userScheduler.addTask( taskSendMessage );
+  // taskSendMessage.enable();
 }
 
 void loop() {
@@ -104,15 +85,4 @@ void loop() {
   humidity = round(dht.getHumidity()*100)/100;
   temperature = roundf(dht.getTemperature()*100)/100;
 
-  // Serial.print(dht.getStatusString());
-  // Serial.print("\t");
-  // Serial.print(humidity, 3);
-  // Serial.print("\t\t");
-  // Serial.print(temperature, 3);
-  // Serial.print("\t\t");
-  // Serial.print(dht.toFahrenheit(temperature), 1);
-  // Serial.print("\t\t");
-  // Serial.print(dht.computeHeatIndex(temperature, humidity, false), 1);
-  // Serial.print("\t\t");
-  // Serial.println(dht.computeHeatIndex(dht.toFahrenheit(temperature), humidity, true), 1);
 }
