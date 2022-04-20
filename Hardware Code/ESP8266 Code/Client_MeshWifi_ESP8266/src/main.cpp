@@ -22,6 +22,10 @@ void sendMessage(){
   Serial.println();
   Serial.println("Start Sending....");
 
+  delay(dht.getMinimumSamplingPeriod());
+  humidity = round(dht.getHumidity()*100)/100;
+  temperature = roundf(dht.getTemperature()*100)/100;
+
     // Serializing in JSON Format
   DynamicJsonDocument doc(1024);
 
@@ -81,8 +85,4 @@ void loop() {
   // it will run the user scheduler as well
   mesh.update();
   
-  delay(dht.getMinimumSamplingPeriod());
-  humidity = round(dht.getHumidity()*100)/100;
-  temperature = roundf(dht.getTemperature()*100)/100;
-
 }

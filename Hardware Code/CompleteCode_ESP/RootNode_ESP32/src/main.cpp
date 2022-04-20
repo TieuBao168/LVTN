@@ -4,28 +4,38 @@
 #include <ArduinoJson.h>
 #include <painlessMesh.h>
 #include <string.h>
+#include <TinyGPS++.h> // library for GPS module
+#include <SoftwareSerial.h>
 
-// SoftwareSerial mySerial(D3,D4);
-// LiquidCrystal_I2C lcd(0x27,16,2); 
-
-// SoftwareSerial ss(14,15); // The serial connection to the GPS device  (rx,tx)
-
-//Khai báo giao thức HTTP
+//Declare HTTP Protocol
 HTTPClient http;    //Declare object of class HTTPClient
 WiFiClient client;
 
-float latitude , longitude;
-int year , month , date, hour , minute , second;
-String date_str , time_str , lat_str , lng_str;
-int pm;
+String apiKeyValue = "IoTLogistic", Vehicle = "3";
 
-int cnt =0;
+TinyGPSPlus gps;  // The TinyGPS++ object
+SoftwareSerial ss(3,1); // The serial connection to the GPS device  (Rx,Tx)
+
+float latitude , longitude;
+String lat_str = "0.000000", lng_str = "0.000000";
+
+int cnt = 0, firsttime = 0;
+
+String Protocol, Stt;
+float Temperature, Humidity;
+int Node;
+String data_rx="";
+
+int NumMode;
+float TemperatureAvg, HumidityAvg = 0;
+float TempArr[4], HumiArr[4];
+String Mode;
 
 // set pin numbers
 #define Relay 2    // the number of the pushbutton pin
 // #define ledPin  2       // the number of the LED pin
 
-//wifi
+//Connect Wifi
 #define ssid "Larcade"
 #define pass "987654321"
 const char* host = "192.168.1.13";
@@ -34,18 +44,23 @@ const char* host = "192.168.1.13";
 void Wifi_connect();
 void ControlRelay();
 
+void GetGPS();
+
+// Post data to MySQL
 void SendtoDB();
+void DB_post();
 void SaveValue();
 
 // Đường dẫn file Back-end
 const char* pathGetCtr = "http://luanvanlogistic.highallnight.com/app/control1/control1.json";
+const char* pathWriteData = "http://luanvanlogistic.highallnight.com/app/postdata.php";
 
-// Dùng để điều khiển Relay
+// Control Relay
 void GetCtr();
 void CtrMode(String payload);
 String  payload,Pre_payload="";
 
-//mesh network
+//Mesh network
 Scheduler userScheduler; 
 painlessMesh mesh;
 #define MESH_PREFIX     "IoTLogistic"
@@ -71,31 +86,13 @@ void sendMessage(){
   taskSendMessage.setInterval(TASK_SECOND * 5);
 }
 
-//-------------------------------
-// String apiKeyValue = "iotgateway2021";
-
-String Protocol, Stt;
-float Temperature, Humidity;
-int Node;
-String data_rx="";
-uint32_t nodeID1, nodeID2 = 0;
-
-int NumMode;
-float TemperatureAvg, HumidityAvg = 0;
-float TempArr[4], HumiArr[4];
-String Mode;
-
-// void datajson(String ND,String DA, String TT_relay, String AS, String CD);
-
-// int Temperature=random(30);
-// int Humidity=random(100);
-
-uint8_t str[]={};
+// uint8_t str[]={};
 
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
+  ss.begin(9600);
   Serial.println();
   Serial.println("--------------------------------------------------------");
   Serial.println("----------------------Start here!-----------------------");
@@ -105,21 +102,38 @@ void setup() {
   // initialize the LED pin as an output
   // pinMode(ledPin, OUTPUT);
 
-  // mesh_setup();
-  // Wifi_connect();
+  mesh_setup();
+  Wifi_connect();
+
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  
+  GetCtr();
+  mesh.update();
+ 
+}
 
-  // Serial.println("Again again");
-  // delay(3000);
-  
-  // GetCtr();
-  // mesh.update();
-  
-  // delay(1000);
+void GetGPS(){
+  if (gps.encode(ss.read())) //read gps data
+    {
+      if (gps.location.isValid()) //check whether gps location is valid
+      {
+        latitude = gps.location.lat();
+        lat_str = String(latitude , 6); // latitude location is stored in a string
+        longitude = gps.location.lng();
+        lng_str = String(longitude , 6); //longitude location is stored in a string
+        // if(firsttime = 0) firsttime = 1;
+      }
+      // if(firsttime = 0)
+      // {
+      //   lat_str = "0.000000";
+      //   lng_str = "0.000000";
+      // }
+    }
+    // Serial.println("Lat: " +lat_str+" | Lng: "+ lng_str);
 }
 
 void SendtoDB(){
@@ -146,6 +160,39 @@ void SendtoDB(){
     }
 }
 
+void DB_post()
+{
+  if(WiFi.status()== WL_CONNECTED)
+    {
+      String  postData;
+      postData ="&api_key=" + apiKeyValue + "&Vehicle="+ Vehicle + "&Temperature=" + TemperatureAvg + "&Humidity=" + HumidityAvg + "&Latitude=" + lat_str + "&Longitude=" + lng_str;
+            
+      http.begin(client,pathWriteData);            //Specify request destination
+      http.addHeader("Content-Type", "application/x-www-form-urlencoded");                  //Specify content-type header
+    
+      int httpCode = http.POST(postData);   //Send the request
+      // String payload = http.getString();    //Get the response payload
+      
+      if (httpCode == 200) 
+      { 
+        Serial.println("Values uploaded successfully."); 
+        Serial.println(httpCode); 
+        String webpage = http.getString();    // Get html webpage output and store it in a string
+        Serial.println(webpage + "\n"); 
+        Serial.println(postData);
+        Serial.println("--------------------------------------------------------------------------------");
+      }
+      else 
+      { 
+        Serial.println(httpCode); 
+        Serial.println("Failed to upload values. \n"); 
+        return; 
+      }
+      http.end();
+    }
+    else{Serial.println("Connect Wifi Error!!!");}
+  }
+
 void receivedCallback(const uint32_t &from, const String &msg)
 {
   Serial.printf("Mesh Network: Received from %u msg=%s\n", from, msg.c_str());
@@ -163,7 +210,7 @@ void receivedCallback(const uint32_t &from, const String &msg)
     Temperature = doc["Temperature"];
     Humidity = doc["Humidity"];
     String x = String(Node) + "," + String(Temperature) + "," + String(Humidity);
-    Serial.println("data php : " +x);
+    // Serial.println("data php : " +x);
 
     SaveValue();
 
@@ -197,7 +244,7 @@ void SaveValue(){
     int a = 0, b = 0;
     float t = 0, h = 0; // Bien tam luu tong nhiet do, do am
 
-    for(int i=0; i<4;i++){
+    for(int i=0; i<4; i++){
       if(TempArr[i]!=0){
         t += TempArr[i];
         TempArr[i] = 0;
@@ -215,7 +262,9 @@ void SaveValue(){
     if (b!=0){
       HumidityAvg = (round((h/b)*100))/100;
     }
-    SendtoDB();
+    // SendtoDB();
+    GetGPS();
+    DB_post();
     cnt = 0;
     TemperatureAvg = 0;
     HumidityAvg = 0;
@@ -225,12 +274,15 @@ void SaveValue(){
 void newConnectionCallback(uint32_t nodeId) {
     Serial.printf("--> startHere: New Connection, nodeId = %u\n", nodeId);
 }
+
 void changedConnectionCallback() {
   Serial.printf("Changed connections\n");
 }
+
 void nodeTimeAdjustedCallback(int32_t offset) {
     // Serial.printf("Adjusted time %u. Offset = %d\n", mesh.getNodeTime(),offset);
 }
+
 void mesh_setup()
 {
   mesh.setDebugMsgTypes(ERROR | STARTUP | CONNECTION); // set before init() so that you can see startup messages
@@ -303,6 +355,7 @@ void CtrMode(String payload)
   {
     const char* TT = cmdJson["Mode"];
     Mode = String(TT);
+
     Serial.println(Mode);
 
     ControlRelay();
@@ -311,19 +364,23 @@ void CtrMode(String payload)
 }
 
 void ControlRelay(){
-  if (Mode == "ON" ){
+  if (Mode == "ON"){
       digitalWrite(Relay, HIGH);
+      delay(200);
       // digitalWrite(ledPin, LOW);
     } else if(Mode == "OFF"){
       digitalWrite(Relay, LOW);
+      delay(200);
       // digitalWrite(ledPin, HIGH);
     } else{
       NumMode = atoi(Mode.c_str());
       if(NumMode < 30){
         digitalWrite(Relay, HIGH);
+        delay(200);
         // digitalWrite(ledPin, LOW);
       } else{
         digitalWrite(Relay, LOW);
+        delay(200);
         // digitalWrite(ledPin, HIGH);
       }
     }
