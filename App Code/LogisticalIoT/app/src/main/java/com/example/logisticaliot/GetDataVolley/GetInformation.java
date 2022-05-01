@@ -43,7 +43,6 @@ public class GetInformation {
                             strJson += "Xuất phát: " + XuatPhat + "\n";
                             strJson += "Đích đến: " + DichDen + "\n";
                             strJson += "Thời gian khởi hành: " + ThoiGian + "\n";
-
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

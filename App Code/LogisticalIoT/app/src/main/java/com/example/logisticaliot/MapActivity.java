@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.android.volley.Request;
@@ -54,6 +56,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_map);
 
 
@@ -109,8 +112,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         if ((preKinhdo.isEmpty())||(preVido.isEmpty())){
                             continue;
                         }else{
-                            Kinhdo = Double.parseDouble(vitri.getString("Kinh do"));
-                            Vido = Double.parseDouble(vitri.getString("Vi do"));
+                            Kinhdo = Double.parseDouble(preKinhdo);
+                            Vido = Double.parseDouble(preVido);
                             break;
                         }
 
@@ -185,8 +188,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 if ((preKinhdo.isEmpty())||(preVido.isEmpty())){
                                     continue;
                                 }else{
-                                    Kinhdo = Double.parseDouble(vitri.getString("Kinh do"));
-                                    Vido = Double.parseDouble(vitri.getString("Vi do"));
+                                    Kinhdo = Double.parseDouble(preKinhdo);
+                                    Vido = Double.parseDouble(preVido);
                                     break;
                                 }
 

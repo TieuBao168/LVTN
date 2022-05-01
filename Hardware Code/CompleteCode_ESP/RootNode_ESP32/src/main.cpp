@@ -11,18 +11,20 @@
 HTTPClient http;    //Declare object of class HTTPClient
 WiFiClient client;
 
-String apiKeyValue = "IoTLogistic", Vehicle = "3";
+String apiKeyValue = "IoTLogistic", Vehicle = "1";
 
 TinyGPSPlus gps;  // The TinyGPS++ object
 SoftwareSerial ss(3,1); // The serial connection to the GPS device  (Rx,Tx)
 
 float latitude , longitude;
-String lat_str = "0.000000", lng_str = "0.000000";
+String lat_str , lng_str ;
+// WiFiServer server(80);
 
-int cnt = 0, firsttime = 0;
+int cnt = 0;
+// int firsttime = 0;
 
 String Protocol, Stt;
-float Temperature, Humidity;
+float Temperature, Humidity, RSSI;
 int Node;
 String data_rx="";
 
@@ -32,7 +34,7 @@ float TempArr[4], HumiArr[4];
 String Mode;
 
 // set pin numbers
-#define Relay 2    // the number of the pushbutton pin
+#define Relay 2   // the number of the pushbutton pin
 // #define ledPin  2       // the number of the LED pin
 
 //Connect Wifi
@@ -44,11 +46,9 @@ const char* host = "192.168.1.13";
 void Wifi_connect();
 void ControlRelay();
 
-void GetGPS();
-
 // Post data to MySQL
 void SendtoDB();
-void DB_post();
+void Post_to_DB();
 void SaveValue();
 
 // Đường dẫn file Back-end
@@ -76,36 +76,52 @@ void mesh_setup();
 void sendMessage(); // Prototype so PlatformIO doesn't complain
 Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
 
+//test mesh
+unsigned long previousTime = 0;
+unsigned long currentTime = 0;
+unsigned int count = 0, count1 = 0;;
+unsigned int countRe = 0;
+unsigned int countSend = 0;
+void calculateRTT(unsigned int currentTime, unsigned int previousTime, unsigned int count);
+void calculateRSSI(double RSSI, unsigned int count);
+//test mesh
+
 void sendMessage(){
   Serial.println();
   Serial.println("Start Sending....");
-  String x = "ok";
+
+  previousTime = millis();
+  Serial.printf("Send message successful: %d time\n", count1);
+  if(count1 != 0){
+  count1++;
+  }
+  Serial.printf("RSSI form Root: %d dBm\n", WiFi.RSSI());
+
+  String x = "Begin";
   // x += mesh.getNodeId();
-  mesh.sendBroadcast( x );
-  Serial.println(x);
+  mesh.sendBroadcast(x);
+  // Serial.println(x);
   taskSendMessage.setInterval(TASK_SECOND * 5);
 }
 
-// uint8_t str[]={};
-
-
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
   ss.begin(9600);
   Serial.println();
   Serial.println("--------------------------------------------------------");
   Serial.println("----------------------Start here!-----------------------");
   
+  
+
   // initialize the pushbutton pin as an input
   pinMode(Relay, OUTPUT);
   // initialize the LED pin as an output
   // pinMode(ledPin, OUTPUT);
 
   mesh_setup();
+
   Wifi_connect();
-
-
+  // server.begin();
 }
 
 void loop() {
@@ -113,27 +129,20 @@ void loop() {
   
   GetCtr();
   mesh.update();
- 
-}
 
-void GetGPS(){
-  if (gps.encode(ss.read())) //read gps data
-    {
-      if (gps.location.isValid()) //check whether gps location is valid
-      {
-        latitude = gps.location.lat();
-        lat_str = String(latitude , 6); // latitude location is stored in a string
-        longitude = gps.location.lng();
-        lng_str = String(longitude , 6); //longitude location is stored in a string
-        // if(firsttime = 0) firsttime = 1;
-      }
-      // if(firsttime = 0)
-      // {
-      //   lat_str = "0.000000";
-      //   lng_str = "0.000000";
-      // }
-    }
-    // Serial.println("Lat: " +lat_str+" | Lng: "+ lng_str);
+  // while (ss.available() > 0) //while data is available
+  //   if (gps.encode(ss.read())) //read gps data
+  //   {
+  //     if (gps.location.isValid()) //check whether gps location is valid
+  //     {
+  //       latitude = gps.location.lat();
+  //       lat_str = String(latitude , 6); // latitude location is stored in a string
+  //       longitude = gps.location.lng();
+  //       lng_str = String(longitude , 6); //longitude location is stored in a string
+  //     }
+  //     // Serial.println("Lat: " +lat_str+" | Lng: "+ lng_str);
+  //     // delay(1000);
+  //   }
 }
 
 void SendtoDB(){
@@ -160,7 +169,7 @@ void SendtoDB(){
     }
 }
 
-void DB_post()
+void Post_to_DB()
 {
   if(WiFi.status()== WL_CONNECTED)
     {
@@ -195,27 +204,112 @@ void DB_post()
 
 void receivedCallback(const uint32_t &from, const String &msg)
 {
-  Serial.printf("Mesh Network: Received from %u msg=%s\n", from, msg.c_str());
+  // Serial.printf("Mesh Network: Received from %u msg=%s\n", from, msg.c_str());
+  currentTime = millis();
   String json = msg.c_str();
   DynamicJsonDocument doc(1024);
   DeserializationError error = deserializeJson(doc, json);
+
+  if(count1==0){
+    count1=1;
+  }
+
+  
+  Serial.printf("Receive message successful: %d time\n", count);
+  Serial.printf("RTT Time %d is: ", count);
+  count++;
+  Serial.println(currentTime - previousTime);
+  calculateRTT(currentTime, previousTime, count);
+  // Serial.println();
+
   if (error)
   {
     Serial.print("deserializeJson() failed: ");
     Serial.println(error.c_str());
+    mesh.sendSingle(from, "Error");
   }
   else
   {
     Node = doc["Node"];
     Temperature = doc["Temperature"];
     Humidity = doc["Humidity"];
-    String x = String(Node) + "," + String(Temperature) + "," + String(Humidity);
+    // String x = String(Node) + "," + String(Temperature) + "," + String(Humidity);
     // Serial.println("data php : " +x);
 
-    SaveValue();
+    RSSI = doc["RSSI"];
+    Serial.printf("RSSI form Leaf: %f\n", RSSI);
+    calculateRSSI(RSSI, count);
 
+
+    // SaveValue();
   }
-  // SendtoDB();
+}
+
+void calculateRSSI(double RSSI, unsigned int count)
+{
+  // Serial.println("calculateRSSI");
+  static double arrayRTT[100];
+  // RTT thu count luu vao mang
+  arrayRTT[count] = RSSI;
+  // gan gia tri dau tien cho max va min
+  static double max = arrayRTT[1];
+  static double min = arrayRTT[1];
+  // for loop through array
+
+  if (arrayRTT[count] < min)
+  {
+    min = arrayRTT[count];
+  }
+  if (arrayRTT[count] >= max)
+  {
+    max = arrayRTT[count];
+  }
+  Serial.printf("min RSSI is: %f\n", min);
+  Serial.printf("max RSSI is: %f\n", max);
+  // tinh RTT trung binh
+  double sumRTT = 0;
+  for (size_t i = 0; i <= count; i++)
+  {
+    sumRTT += (double)arrayRTT[i];
+  }
+  double averageRTT = sumRTT / (double)(count);
+  Serial.printf("Average RSSI is: %f\n", averageRTT);
+}
+
+// note la bien count chay tu 1
+void calculateRTT(unsigned int currentTime, unsigned int previousTime, unsigned int count)
+{
+  // Serial.println("calculateRTT");
+  // khoi tao gia tri RTT vong dau tien
+  int roundTripTime = currentTime - previousTime;
+  // array de luu RTT, 300 phan tu gui trong 5ph
+  static unsigned int arrayRTT[100];
+  // RTT thu count luu vao mang
+  arrayRTT[count] = roundTripTime;
+
+  // gan gia tri dau tien cho max va min
+  static unsigned int max = arrayRTT[1];
+  static unsigned int min = arrayRTT[1];
+  // for loop through array
+
+  if (arrayRTT[count] - min > 42949672)
+  {
+    min = arrayRTT[count];
+  }
+  if (arrayRTT[count] >= max)
+  {
+    max = arrayRTT[count];
+  }
+  Serial.printf("min RTT is: %d\n", min);
+  Serial.printf("max RTT is: %d\n", max);
+  // tinh RTT trung binh
+  double sumRTT = 0;
+  for (size_t i = 0; i <= count; i++)
+  {
+    sumRTT += (double)arrayRTT[i];
+  }
+  double averageRTT = sumRTT / (double)(count);
+  Serial.printf("Average RTT is: %f \n", averageRTT);
 }
 
 void SaveValue(){
@@ -263,8 +357,8 @@ void SaveValue(){
       HumidityAvg = (round((h/b)*100))/100;
     }
     // SendtoDB();
-    GetGPS();
-    DB_post();
+    // GetGPS();
+    Post_to_DB();
     cnt = 0;
     TemperatureAvg = 0;
     HumidityAvg = 0;
@@ -272,11 +366,11 @@ void SaveValue(){
 }
 
 void newConnectionCallback(uint32_t nodeId) {
-    Serial.printf("--> startHere: New Connection, nodeId = %u\n", nodeId);
+    // Serial.printf("--> startHere: New Connection, nodeId = %u\n", nodeId);
 }
 
 void changedConnectionCallback() {
-  Serial.printf("Changed connections\n");
+  // Serial.printf("Changed connections\n");
 }
 
 void nodeTimeAdjustedCallback(int32_t offset) {
@@ -318,6 +412,7 @@ void Wifi_connect()
   Serial.println("Wifi connected successfull!!!");
   WiFi.setAutoReconnect(true);
   WiFi.persistent(true);
+  Serial.println(WiFi.localIP()); 
   delay(1000);
 }
 
@@ -355,9 +450,7 @@ void CtrMode(String payload)
   {
     const char* TT = cmdJson["Mode"];
     Mode = String(TT);
-
     Serial.println(Mode);
-
     ControlRelay();
   }   
   
@@ -372,13 +465,13 @@ void ControlRelay(){
       digitalWrite(Relay, LOW);
       delay(200);
       // digitalWrite(ledPin, HIGH);
-    } else{
+    } else{ //tạo khoảng thời gian Offset 2 độ
       NumMode = atoi(Mode.c_str());
-      if(NumMode < 30){
+      if(NumMode < (30 + 2)){
         digitalWrite(Relay, HIGH);
         delay(200);
         // digitalWrite(ledPin, LOW);
-      } else{
+      } else if(NumMode > (30 - 2)){
         digitalWrite(Relay, LOW);
         delay(200);
         // digitalWrite(ledPin, HIGH);

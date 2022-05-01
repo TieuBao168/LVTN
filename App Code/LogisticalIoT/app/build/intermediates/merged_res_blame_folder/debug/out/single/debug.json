@@ -80,12 +80,12 @@
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_logo.png.flat",
-        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\drawable-v24\\logo.png"
+        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_logo.png.flat",
+        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\drawable-v24\\logo.png"
     },
     {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
@@ -102,10 +102,6 @@
     {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\font_federo.ttf.flat",
         "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\font\\federo.ttf"
-    },
-    {
-        "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
-        "source": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
     {
         "merged": "D:\\LVTN\\SourceCode_LVTN\\App Code\\LogisticalIoT\\app\\build\\intermediates\\merged_res\\debug\\font_suez_one.ttf.flat",

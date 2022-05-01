@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -34,6 +36,7 @@ public class HistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_history_list);
         BackBtn = findViewById(R.id.btn_back);
         LVThongtin = (ListView) findViewById(R.id.LvThongtin);
@@ -44,16 +47,17 @@ public class HistoryActivity extends AppCompatActivity {
 
         Getdata(LoginActivity.GetData_Url);
 
-        new CountDownTimer(1000000000,10000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                Getdata(LoginActivity.GetData_Url);
-            }
-            @Override
-            public void onFinish() {
-
-            }
-        }.start();
+//        new CountDownTimer(1000000000,10000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//
+//                Getdata(LoginActivity.GetData_Url);
+//            }
+//            @Override
+//            public void onFinish() {
+//
+//            }
+//        }.start();
 
         BackBtn.setOnClickListener(new View.OnClickListener() {
             @Override

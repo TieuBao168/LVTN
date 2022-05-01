@@ -7,16 +7,13 @@
 			"path": "RootNode_ESP32"
 		},
 		{
-			"path": "..\\ESP8266 Code\\Server_MeshWifi_ESP8266"
-		},
-		{
-			"path": "..\\..\\..\\Code ESP\\Test Mesh\\Code Test mesh esp32\\node-test-root"
+			"path": "..\\ESP8266 Code\\Client_MeshWifi_ESP8266"
 		},
 		{
 			"path": "..\\..\\..\\Code ESP\\Test Mesh\\Code Test mesh esp8266\\Leaf Node"
 		},
 		{
-			"path": "..\\ESP8266 Code\\Client_MeshWifi_ESP8266"
+			"path": "..\\..\\..\\Code ESP\\Test Mesh\\Code Test mesh esp8266\\Root Node"
 		}
 	],
 	"settings": {

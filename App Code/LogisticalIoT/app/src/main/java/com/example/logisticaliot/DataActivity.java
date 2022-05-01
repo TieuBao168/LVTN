@@ -1,10 +1,17 @@
 package com.example.logisticaliot;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -20,36 +27,49 @@ import com.example.logisticaliot.GetDataVolley.GetInformation;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DataActivity extends AppCompatActivity {
-    Button MapBtn, ReloadBtn, ControlBtn, HistoryBtn;
+    Button MapBtn, DataBtn, ControlBtn, HistoryBtn;
     TextView ThongtinView, NhietdoView, DoamView, AnhsangView;
     LineChart lineChart_Nhietdo, lineChart_Doam;
     Float Nhietdo, Doam, Value;
     String URL;
+
+    static final int NOTIFICATION_ID = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_data);
         ThongtinView = findViewById(R.id.ThongtinView);
         lineChart_Nhietdo = findViewById(R.id.NhietdoChart);
         lineChart_Doam = findViewById(R.id.DoamChart);
 //        AnhsangView = findViewById(R.id.AnhsangView);
         MapBtn = findViewById(R.id.Map_Btn);
-//        ReloadBtn = findViewById(R.id.Reload_Btn);
+        DataBtn = findViewById(R.id.Data_Btn);
         ControlBtn = findViewById(R.id.Control_Btn);
         HistoryBtn = findViewById(R.id.History_Btn);
         URL = LoginActivity.GetData_Url;
+
+        GetInformation fetch = new GetInformation();
+        fetch.getJSONArray(DataActivity.this,ThongtinView);
+
+        GetChart(URL,lineChart_Nhietdo,"Nhiet do", "Nhiệt độ", Color.RED);
+        GetChart(URL,lineChart_Doam,"Do am", "Độ ẩm", Color.BLUE);
 
         new CountDownTimer(1000000000,5000) {
             @Override
@@ -57,8 +77,8 @@ public class DataActivity extends AppCompatActivity {
                 GetInformation fetch = new GetInformation();
                 fetch.getJSONArray(DataActivity.this,ThongtinView);
 
-                GetChart(URL,lineChart_Nhietdo,"Nhiet do", Color.RED);
-                GetChart(URL,lineChart_Doam,"Do am", Color.BLUE);
+                GetChart(URL,lineChart_Nhietdo,"Nhiet do", "Nhiệt độ", Color.RED);
+                GetChart(URL,lineChart_Doam,"Do am", "Độ ẩm", Color.BLUE);
             }
             @Override
             public void onFinish() {
@@ -66,6 +86,12 @@ public class DataActivity extends AppCompatActivity {
             }
         }.start();
 
+        DataBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            sendNotification();
+            }
+        });
 
         MapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +121,7 @@ public class DataActivity extends AppCompatActivity {
         });
     }
 
-    private void GetChart(String url, LineChart lineChart, String type, Integer a) {
+    private void GetChart(String url, LineChart lineChart, String data, String label, Integer color) {
         RequestQueue queue = Volley.newRequestQueue(this);
         // 2.truyền đường dẫn vào request
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, url,null, new Response.Listener<JSONArray>() {
@@ -109,18 +135,19 @@ public class DataActivity extends AppCompatActivity {
                 for (int i=response.length()-10; i<response.length(); i++) {
                     try {
                         JSONObject person = response.getJSONObject(i);
-                        Value = Float.parseFloat(person.getString(type));
-                        if(Value!=null) {
-                            dataSet.add(new Entry(i, Value));
-                        }else{
+                        String preValue = person.getString(data);
+                        if(preValue.isEmpty()){
                             dataSet.add(new Entry(i, 0));
+                        }else{
+                            Value = Float.parseFloat(preValue);
+                            dataSet.add(new Entry(i, Value));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
 
-                LineDataSet lineDataSet = new LineDataSet(dataSet, type);
+                LineDataSet lineDataSet = new LineDataSet(dataSet, label);
                 ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
                 iLineDataSets.add(lineDataSet);
 
@@ -137,7 +164,7 @@ public class DataActivity extends AppCompatActivity {
                 //you can modify your line chart graph according to your requirement there are lots of method available in this library
                 //now customize line chart
 
-                lineDataSet.setColor(a);
+                lineDataSet.setColor(color);
 //                lineDataSet_Nhietdo.setCircleColor(Color.GREEN);
                 lineDataSet.setDrawCircles(false);
                 //lineDataSet.setDrawCircleHole(true);
@@ -153,6 +180,7 @@ public class DataActivity extends AppCompatActivity {
                 legend.setXEntrySpace(15);
                 legend.setFormSize(17);
                 legend.setFormToTextSpace(5);
+//                legend.setCustom(ColorTemplate.VORDIPLOM_COLORS, new String[] { "Set1"});
 
                 Description descrip = new Description();
                 descrip.setText(" ");
@@ -160,14 +188,14 @@ public class DataActivity extends AppCompatActivity {
                 descrip.setTextSize(16);
                 lineChart.setDescription(descrip);
 
-//                LegendEntry[] legendEntries_Doam = new LegendEntry[2];
-//                for(int i=0; i<legendEntries_Doam.length; i++){
-//                    LegendEntry entry = new LegendEntry();
-//                    entry.formColor = colorClassArray[i];
-//                    entry.label = String.valueOf(legendName[i]);
-//                    legendEntries_Doam[i] = entry;
-//                }
-//                legend.setCustom(legendEntries_Doam);
+                int[] colorClassArray = new int[] {color};
+                String[] legendName = {label};
+                LegendEntry[] legendEntries = new LegendEntry[1];
+                LegendEntry entry = new LegendEntry();
+                entry.formColor = colorClassArray[0];
+                entry.label = String.valueOf(legendName[0]);
+                legendEntries[0] = entry;
+                legend.setCustom(legendEntries);
 
             }
         }, new Response.ErrorListener() {
@@ -179,145 +207,24 @@ public class DataActivity extends AppCompatActivity {
         queue.add(req);
     }
 
-//    private void GetData(String url) {
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        // 2.truyền đường dẫn vào request
-//        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, url,null, new Response.Listener<JSONArray>() {
-//            @Override
-//            public void onResponse(JSONArray response) {
-//
-//                lineChart_Nhietdo.setDragEnabled(true);
-//                lineChart_Nhietdo.setScaleEnabled(false);
-//
-//                ArrayList<Entry> dataSet_Nhietdo = new ArrayList<Entry>();
-//                for (int i=response.length()-10; i<response.length(); i++) {
-//                    try {
-//                        JSONObject person = response.getJSONObject(i);
-//                        Nhietdo = Float.parseFloat(person.getString("Nhiet do"));
-//                        dataSet_Nhietdo.add(new Entry(i, Nhietdo));
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//
-//                LineDataSet lineDataSet_Nhietdo = new LineDataSet(dataSet_Nhietdo, "Nhiệt độ");
-//                ArrayList<ILineDataSet> iLineDataSets_Nhietdo = new ArrayList<>();
-//                iLineDataSets_Nhietdo.add(lineDataSet_Nhietdo);
-//
-//                LineData lineData_Nhietdo = new LineData(iLineDataSets_Nhietdo);
-//                lineChart_Nhietdo.setData(lineData_Nhietdo);
-//                lineChart_Nhietdo.invalidate();
-//
-//                //if you want set background color use below method
-//                //lineChart.setBackgroundColor(Color.RED);
-//
-//                // set text if data are are not available
-//                lineChart_Nhietdo.setNoDataText("Data not Available");
-//
-//                //you can modify your line chart graph according to your requirement there are lots of method available in this library
-//
-//                //now customize line chart
-//
-//
-//                lineDataSet_Nhietdo.setColor(Color.RED);
-//                lineDataSet_Nhietdo.setCircleColor(Color.GREEN);
-//                lineDataSet_Nhietdo.setDrawCircles(false);
-//                //lineDataSet.setDrawCircleHole(true);
-//                lineDataSet_Nhietdo.setLineWidth(3);
-//                //lineDataSet.setCircleRadius(10);
-//                //lineDataSet.setCircleHoleRadius(10);
-//                lineDataSet_Nhietdo.setValueTextSize(13);
-//                lineDataSet_Nhietdo.setValueTextColor(Color.BLACK);
-//
-//                Legend legend_Nhietdo = lineChart_Nhietdo.getLegend();
-//                legend_Nhietdo.setTextSize(15);
-//                legend_Nhietdo.setForm(Legend.LegendForm.LINE);
-//                legend_Nhietdo.setXEntrySpace(15);
-//                legend_Nhietdo.setFormSize(17);
-//                legend_Nhietdo.setFormToTextSpace(5);
-//
-//                Description descrip_Nhietdo = new Description();
-//                descrip_Nhietdo.setText(" ");
-//                descrip_Nhietdo.setTextColor(Color.BLACK);
-//                descrip_Nhietdo.setTextSize(16);
-//                lineChart_Nhietdo.setDescription(descrip_Nhietdo);
-//
-//
-//                //Edit Độ ẩm chart
-//                lineChart_Doam.setDragEnabled(true);
-//                lineChart_Doam.setScaleEnabled(false);
-//
-//                ArrayList<Entry> dataSet_Doam = new ArrayList<Entry>();
-//                for (int i=response.length()-10; i<response.length(); i++) {
-//                    try {
-//                        JSONObject a = response.getJSONObject(i);
-//                        Doam = Float.parseFloat(a.getString("Do am"));
-//                        dataSet_Doam.add(new Entry(i, Doam));
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//
-//                LineDataSet lineDataSet_Doam = new LineDataSet(dataSet_Doam, "Độ ẩm");
-//                ArrayList<ILineDataSet> iLineDataSets_Doam = new ArrayList<>();
-//                iLineDataSets_Doam.add(lineDataSet_Doam);
-//
-//                LineData lineData_Doam = new LineData(iLineDataSets_Doam);
-//                lineChart_Doam.setData(lineData_Doam);
-//                lineChart_Doam.invalidate();
-//
-//                //if you want set background color use below method
-//                //lineChart.setBackgroundColor(Color.RED);
-//
-//                // set text if data are are not available
-//                lineChart_Doam.setNoDataText("Data not Available");
-//
-//                //you can modify your line chart graph according to your requirement there are lots of method available in this library
-//
-//                //now customize line chart
-//
-//                lineDataSet_Doam.setColor(Color.BLUE);
-//                lineDataSet_Doam.setCircleColor(Color.GREEN);
-//                lineDataSet_Doam.setDrawCircles(false);
-//                //lineDataSet.setDrawCircleHole(true);
-//                lineDataSet_Doam.setLineWidth(3);
-//                //lineDataSet.setCircleRadius(10);
-//                //lineDataSet.setCircleHoleRadius(10);
-//                lineDataSet_Doam.setValueTextSize(13);
-//                lineDataSet_Doam.setValueTextColor(Color.BLACK);
-//
-//                Legend legend_Doam = lineChart_Doam.getLegend();
-//                legend_Doam.setTextSize(15);
-//                legend_Doam.setForm(Legend.LegendForm.LINE);
-//                legend_Doam.setXEntrySpace(15);
-//                legend_Doam.setFormSize(17);
-//                legend_Doam.setFormToTextSpace(5);
-//
-//                Description descrip_Doam = new Description();
-//                descrip_Doam.setText(" ");
-//                descrip_Doam.setTextColor(Color.BLACK);
-//                descrip_Doam.setTextSize(16);
-//                lineChart_Doam.setDescription(descrip_Doam);
-//
-////                LegendEntry[] legendEntries_Doam = new LegendEntry[2];
-////
-////                for(int i=0; i<legendEntries_Doam.length; i++){
-////                    LegendEntry entry = new LegendEntry();
-////                    entry.formColor = colorClassArray[i];
-////                    entry.label = String.valueOf(legendName[i]);
-////                    legendEntries_Doam[i] = entry;
-////                }
-////                legend_Doam.setCustom(legendEntries_Doam);
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//            }
-//        });
-//        //4. add
-//        queue.add(req);
-//    }
+    private void sendNotification() {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
 
+        Notification notification = new Notification.Builder(this)
+                .setContentTitle("Nhiệt độ giảm đột ngột")
+                .setContentText("Message push notification")
+                .setSmallIcon(R.drawable.logo)
+//                .setLargeIcon(bitmap)
+                .build();
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if(notificationManager != null) {
+            notificationManager.notify(NOTIFICATION_ID, notification);
+        }
+    }
+
+    private int getNotificationId(){
+        return (int) new Date().getTime();
+    }
 
 }
