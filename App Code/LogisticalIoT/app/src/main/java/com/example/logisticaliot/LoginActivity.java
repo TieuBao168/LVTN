@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText TaikhoanText,MatkhauText,EmailText;
     Button LoginBtn, RegisterBtn;
     ProgressDialog progressDialog;
-    public static String GetData_Url = "", Control_Url ="", ControlSetup_Url="";
+    public static String GetDataLocation_Url = "", Control_Url ="", ControlSetup_Url="", GetSensor_Url ="";
 
 //    String url="https://iotlogistics.000webhostapp.com/App/register.php";
 //    String urls ="https://iotlogistics.000webhostapp.com/App/login.php";
@@ -87,23 +87,25 @@ public class LoginActivity extends AppCompatActivity {
                                 JSONObject jsonObject = new JSONObject(response);
                                 String result = jsonObject.getString("status");
                                 if (result.equals("success1")){
-                                    GetData_Url=Urls.GETDATA1_URL;
+                                    GetDataLocation_Url=Urls.GETDATALOCATION1_URL;
+                                    GetSensor_Url=Urls.GETSENSOR1_URL;
                                     Control_Url=Urls.CONTROL1_URL;
                                     ControlSetup_Url=Urls.CONTROLSETUP1_URL;
                                     progressDialog.dismiss();
 //                                    message("Thanhf coong");
 
                                     Intent intent = new Intent();
-                                    intent.setClass(LoginActivity.this, MapActivity.class);
+                                    intent.setClass(LoginActivity.this, DataActivity.class);
                                     startActivity(intent);
 
                                 }else if(result.equals("success2")){
-                                    GetData_Url=Urls.GETDATA2_URL;
+                                    GetDataLocation_Url=Urls.GETDATALOCATION2_URL;
+                                    GetSensor_Url=Urls.GETSENSOR2_URL;
                                     Control_Url=Urls.CONTROL2_URL;
                                     ControlSetup_Url=Urls.CONTROLSETUP2_URL;
                                     progressDialog.dismiss();
                                     Intent intent = new Intent();
-                                    intent.setClass(LoginActivity.this, MapActivity.class);
+                                    intent.setClass(LoginActivity.this, DataActivity.class);
                                     startActivity(intent);
                                 }
                                 else {

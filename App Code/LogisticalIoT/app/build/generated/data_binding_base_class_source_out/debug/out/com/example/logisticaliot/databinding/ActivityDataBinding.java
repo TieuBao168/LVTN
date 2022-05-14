@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,19 +47,22 @@ public final class ActivityDataBinding implements ViewBinding {
   public final TextView NhietdoView;
 
   @NonNull
-  public final TextView TTTV5;
+  public final TextView TSCB;
 
   @NonNull
-  public final TextView TTTV6;
+  public final TextView TTTV5;
 
   @NonNull
   public final TextView ThongtinView;
 
+  @NonNull
+  public final Spinner spinner;
+
   private ActivityDataBinding(@NonNull RelativeLayout rootView, @NonNull Button ControlBtn,
       @NonNull Button DataBtn, @NonNull LineChart DoamChart, @NonNull TextView DoamView,
       @NonNull Button HistoryBtn, @NonNull Button MapBtn, @NonNull LineChart NhietdoChart,
-      @NonNull TextView NhietdoView, @NonNull TextView TTTV5, @NonNull TextView TTTV6,
-      @NonNull TextView ThongtinView) {
+      @NonNull TextView NhietdoView, @NonNull TextView TSCB, @NonNull TextView TTTV5,
+      @NonNull TextView ThongtinView, @NonNull Spinner spinner) {
     this.rootView = rootView;
     this.ControlBtn = ControlBtn;
     this.DataBtn = DataBtn;
@@ -68,9 +72,10 @@ public final class ActivityDataBinding implements ViewBinding {
     this.MapBtn = MapBtn;
     this.NhietdoChart = NhietdoChart;
     this.NhietdoView = NhietdoView;
+    this.TSCB = TSCB;
     this.TTTV5 = TTTV5;
-    this.TTTV6 = TTTV6;
     this.ThongtinView = ThongtinView;
+    this.spinner = spinner;
   }
 
   @Override
@@ -148,15 +153,15 @@ public final class ActivityDataBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.TT_TV5;
-      TextView TTTV5 = ViewBindings.findChildViewById(rootView, id);
-      if (TTTV5 == null) {
+      id = R.id.TSCB;
+      TextView TSCB = ViewBindings.findChildViewById(rootView, id);
+      if (TSCB == null) {
         break missingId;
       }
 
-      id = R.id.TT_TV6;
-      TextView TTTV6 = ViewBindings.findChildViewById(rootView, id);
-      if (TTTV6 == null) {
+      id = R.id.TT_TV5;
+      TextView TTTV5 = ViewBindings.findChildViewById(rootView, id);
+      if (TTTV5 == null) {
         break missingId;
       }
 
@@ -166,8 +171,15 @@ public final class ActivityDataBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.spinner;
+      Spinner spinner = ViewBindings.findChildViewById(rootView, id);
+      if (spinner == null) {
+        break missingId;
+      }
+
       return new ActivityDataBinding((RelativeLayout) rootView, ControlBtn, DataBtn, DoamChart,
-          DoamView, HistoryBtn, MapBtn, NhietdoChart, NhietdoView, TTTV5, TTTV6, ThongtinView);
+          DoamView, HistoryBtn, MapBtn, NhietdoChart, NhietdoView, TSCB, TTTV5, ThongtinView,
+          spinner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

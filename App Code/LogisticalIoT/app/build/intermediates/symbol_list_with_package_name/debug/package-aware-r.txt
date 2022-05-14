@@ -2581,6 +2581,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable scrollbar_style
 drawable test_custom_background
 drawable test_level_drawable
 drawable tooltip_frame_dark
@@ -2628,8 +2629,8 @@ id SHOW_PROGRESS
 id SYM
 id TOP_END
 id TOP_START
+id TSCB
 id TT_TV5
-id TT_TV6
 id TX100T_1
 id TX100T_2
 id Taikhoantext
@@ -3021,6 +3022,8 @@ id snapMargins
 id south
 id spacer
 id special_effects_controller_view_tag
+id spinner
+id spinnersensor
 id spline
 id split_action_bar
 id spread

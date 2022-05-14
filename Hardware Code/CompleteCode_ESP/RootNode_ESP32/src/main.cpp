@@ -7,23 +7,25 @@
 #include <TinyGPS++.h> // library for GPS module
 #include <SoftwareSerial.h>
 
+// hw_timer_t* timer = NULL; //khơi tạo timer
+// portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED; 
+
 //Declare HTTP Protocol
 HTTPClient http;    //Declare object of class HTTPClient
 WiFiClient client;
 
-String apiKeyValue = "IoTLogistic", Vehicle = "1";
+String apiKeyValue = "IoTLogistic", Vehicle = "2";
 
 TinyGPSPlus gps;  // The TinyGPS++ object
 SoftwareSerial ss(3,1); // The serial connection to the GPS device  (Rx,Tx)
 
 float latitude , longitude;
-String lat_str , lng_str ;
+String lat_str = "0.000000", lng_str = "0.000000";
 // WiFiServer server(80);
 
 int cnt = 0;
 // int firsttime = 0;
 
-String Protocol, Stt;
 float Temperature, Humidity, RSSI;
 int Node;
 String data_rx="";
@@ -36,6 +38,9 @@ String Mode;
 // set pin numbers
 #define Relay 2   // the number of the pushbutton pin
 // #define ledPin  2       // the number of the LED pin
+// Giá trị lần cuối cùng được cập nhật
+unsigned long previousMillis = 0;  
+const long interval = 1000; // giá trị delay (milliseconds)
 
 //Connect Wifi
 #define ssid "Larcade"
@@ -47,13 +52,12 @@ void Wifi_connect();
 void ControlRelay();
 
 // Post data to MySQL
-void SendtoDB();
-void Post_to_DB();
+void Post_to_DB(String Table);
 void SaveValue();
 
 // Đường dẫn file Back-end
-const char* pathGetCtr = "http://luanvanlogistic.highallnight.com/app/control1/control1.json";
-const char* pathWriteData = "http://luanvanlogistic.highallnight.com/app/postdata.php";
+const char* pathGetCtr = "http://luanvanlogistic.highallnight.com/app/control2/control2.json";
+const char* LinkWriteData = "http://luanvanlogistic.highallnight.com/app/postdata.php";
 
 // Control Relay
 void GetCtr();
@@ -76,33 +80,26 @@ void mesh_setup();
 void sendMessage(); // Prototype so PlatformIO doesn't complain
 Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
 
-//test mesh
-unsigned long previousTime = 0;
-unsigned long currentTime = 0;
-unsigned int count = 0, count1 = 0;;
-unsigned int countRe = 0;
-unsigned int countSend = 0;
-void calculateRTT(unsigned int currentTime, unsigned int previousTime, unsigned int count);
-void calculateRSSI(double RSSI, unsigned int count);
-//test mesh
-
 void sendMessage(){
   Serial.println();
   Serial.println("Start Sending....");
-
-  previousTime = millis();
-  Serial.printf("Send message successful: %d time\n", count1);
-  if(count1 != 0){
-  count1++;
-  }
-  Serial.printf("RSSI form Root: %d dBm\n", WiFi.RSSI());
 
   String x = "Begin";
   // x += mesh.getNodeId();
   mesh.sendBroadcast(x);
   // Serial.println(x);
-  taskSendMessage.setInterval(TASK_SECOND * 5);
+  taskSendMessage.setInterval(TASK_SECOND * 10);
 }
+
+// hàm xử lý ngắt
+// void IRAM_ATTR onTimer() {   
+//   portENTER_CRITICAL_ISR(&timerMux); //vào chế độ tránh xung đột
+
+//   // Post_to_DB("location");
+//   Serial.println("Interrupt Successfully \n");
+
+//   portEXIT_CRITICAL_ISR(&timerMux); // thoát 
+// }
 
 void setup() {
   Serial.begin(115200);
@@ -111,7 +108,14 @@ void setup() {
   Serial.println("--------------------------------------------------------");
   Serial.println("----------------------Start here!-----------------------");
   
-  
+  //   //khơit tạo timer với chu kì 1us vì thạch anh của ESP chạy 8MHz
+  // timer = timerBegin(0, 80, true);
+  // //khởi tạo hàm xử lý ngắt ngắt cho Timer
+  // timerAttachInterrupt(timer, &onTimer, true);
+  // //khởi tạo thời gian ngắt cho timer là 1s (1000000 us)
+  // timerAlarmWrite(timer, 5000000, true);
+  // //bắt đầu chạy timer
+  // timerAlarmEnable(timer);
 
   // initialize the pushbutton pin as an input
   pinMode(Relay, OUTPUT);
@@ -122,6 +126,8 @@ void setup() {
 
   Wifi_connect();
   // server.begin();
+
+
 }
 
 void loop() {
@@ -130,66 +136,59 @@ void loop() {
   GetCtr();
   mesh.update();
 
-  // while (ss.available() > 0) //while data is available
-  //   if (gps.encode(ss.read())) //read gps data
-  //   {
-  //     if (gps.location.isValid()) //check whether gps location is valid
-  //     {
-  //       latitude = gps.location.lat();
-  //       lat_str = String(latitude , 6); // latitude location is stored in a string
-  //       longitude = gps.location.lng();
-  //       lng_str = String(longitude , 6); //longitude location is stored in a string
-  //     }
-  //     // Serial.println("Lat: " +lat_str+" | Lng: "+ lng_str);
-  //     // delay(1000);
-  //   }
+  while (ss.available() > 0) //while data is available
+    if (gps.encode(ss.read())) //read gps data
+    {
+      if (gps.location.isValid()) //check whether gps location is valid
+      {
+        latitude = gps.location.lat();
+        lat_str = String(latitude , 6); // latitude location is stored in a string
+        longitude = gps.location.lng();
+        lng_str = String(longitude , 6); //longitude location is stored in a string
+      }
+      // Serial.println("Lat: " +lat_str+" | Lng: "+ lng_str);
+      // delay(1000);
+    }
+  
+  // khởi tạo một biến lưu giá trị hiện tại của Timer
+  unsigned long currentMillis = millis();
+  if (currentMillis - previousMillis >= 15*interval) {
+    previousMillis = currentMillis;
+    Post_to_DB("location");
+  }
 }
 
-void SendtoDB(){
-  // Serial.println("Nhiet do: "+String(TemperatureAvg)+" || Do am: "+String(HumidityAvg));
-    client.print(String("GET http://luanvanlogistic.highallnight.com/connect.php?") + 
-                          ("&nhiet_do=") + TemperatureAvg +
-                          ("&do_am=") + HumidityAvg +
-                          " HTTP/1.1\r\n" +
-                 "Host: " + host + "\r\n" +
-                 "Connection: close\r\n\r\n");
-    unsigned long timeout = millis();
-    while (client.available() == 0) {
-        if (millis() - timeout > 1000) {
-            Serial.println(">>> Client Timeout !");
-            client.stop();
-            return;
-        }
-    }
-
-    // Read all the lines of the reply from server and print them to Serial
-    while(client.available()) {
-        String line = client.readStringUntil('\r');
-        Serial.print(line);
-    }
-}
-
-void Post_to_DB()
+void Post_to_DB(String Table)
 {
   if(WiFi.status()== WL_CONNECTED)
     {
       String  postData;
-      postData ="&api_key=" + apiKeyValue + "&Vehicle="+ Vehicle + "&Temperature=" + TemperatureAvg + "&Humidity=" + HumidityAvg + "&Latitude=" + lat_str + "&Longitude=" + lng_str;
-            
-      http.begin(client,pathWriteData);            //Specify request destination
-      http.addHeader("Content-Type", "application/x-www-form-urlencoded");                  //Specify content-type header
+      if(Table == "location"){
+        postData ="&api_key=" + apiKeyValue + "&Table="+ Table + "&Vehicle="+ Vehicle + 
+        "&Latitude=" + lat_str + "&Longitude=" + lng_str;
+      } else if(Table == "data"){
+        postData ="&api_key=" + apiKeyValue + "&Table="+ Table + "&Vehicle="+ Vehicle + 
+        "&Temperature=" + TemperatureAvg + "&Humidity=" + HumidityAvg + 
+        "&Temperature1=" + TempArr[0] + "&Humidity1=" + HumiArr[0] +
+        "&Temperature2=" + TempArr[1] + "&Humidity2=" + HumiArr[1] +
+        "&Temperature3=" + TempArr[2] + "&Humidity3=" + HumiArr[2] +
+        "&Temperature4=" + TempArr[3] + "&Humidity4=" + HumiArr[3];
+      }
+           
+      http.begin(client, LinkWriteData); //Specify request destination
+      http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Specify content-type header
     
-      int httpCode = http.POST(postData);   //Send the request
-      // String payload = http.getString();    //Get the response payload
+      int httpCode = http.POST(postData); //Send the request
+      // String payload = http.getString(); //Get the response payload
       
       if (httpCode == 200) 
       { 
-        Serial.println("Values uploaded successfully."); 
+        Serial.println("Values uploaded successfully. " + Table); 
         Serial.println(httpCode); 
-        String webpage = http.getString();    // Get html webpage output and store it in a string
-        Serial.println(webpage + "\n"); 
-        Serial.println(postData);
-        Serial.println("--------------------------------------------------------------------------------");
+        // String webpage = http.getString();    // Get html webpage output and store it in a string
+        // Serial.println(webpage + "\n"); 
+        // Serial.println(postData);
+        // Serial.println("--------------------------------------------------------------------------------");
       }
       else 
       { 
@@ -204,23 +203,12 @@ void Post_to_DB()
 
 void receivedCallback(const uint32_t &from, const String &msg)
 {
-  // Serial.printf("Mesh Network: Received from %u msg=%s\n", from, msg.c_str());
-  currentTime = millis();
+  Serial.println();
+  Serial.print("Message = ");
+  Serial.print(msg);
   String json = msg.c_str();
   DynamicJsonDocument doc(1024);
   DeserializationError error = deserializeJson(doc, json);
-
-  if(count1==0){
-    count1=1;
-  }
-
-  
-  Serial.printf("Receive message successful: %d time\n", count);
-  Serial.printf("RTT Time %d is: ", count);
-  count++;
-  Serial.println(currentTime - previousTime);
-  calculateRTT(currentTime, previousTime, count);
-  // Serial.println();
 
   if (error)
   {
@@ -236,97 +224,25 @@ void receivedCallback(const uint32_t &from, const String &msg)
     // String x = String(Node) + "," + String(Temperature) + "," + String(Humidity);
     // Serial.println("data php : " +x);
 
-    RSSI = doc["RSSI"];
-    Serial.printf("RSSI form Leaf: %f\n", RSSI);
-    calculateRSSI(RSSI, count);
-
-
-    // SaveValue();
+    SaveValue();
   }
-}
-
-void calculateRSSI(double RSSI, unsigned int count)
-{
-  // Serial.println("calculateRSSI");
-  static double arrayRTT[100];
-  // RTT thu count luu vao mang
-  arrayRTT[count] = RSSI;
-  // gan gia tri dau tien cho max va min
-  static double max = arrayRTT[1];
-  static double min = arrayRTT[1];
-  // for loop through array
-
-  if (arrayRTT[count] < min)
-  {
-    min = arrayRTT[count];
-  }
-  if (arrayRTT[count] >= max)
-  {
-    max = arrayRTT[count];
-  }
-  Serial.printf("min RSSI is: %f\n", min);
-  Serial.printf("max RSSI is: %f\n", max);
-  // tinh RTT trung binh
-  double sumRTT = 0;
-  for (size_t i = 0; i <= count; i++)
-  {
-    sumRTT += (double)arrayRTT[i];
-  }
-  double averageRTT = sumRTT / (double)(count);
-  Serial.printf("Average RSSI is: %f\n", averageRTT);
-}
-
-// note la bien count chay tu 1
-void calculateRTT(unsigned int currentTime, unsigned int previousTime, unsigned int count)
-{
-  // Serial.println("calculateRTT");
-  // khoi tao gia tri RTT vong dau tien
-  int roundTripTime = currentTime - previousTime;
-  // array de luu RTT, 300 phan tu gui trong 5ph
-  static unsigned int arrayRTT[100];
-  // RTT thu count luu vao mang
-  arrayRTT[count] = roundTripTime;
-
-  // gan gia tri dau tien cho max va min
-  static unsigned int max = arrayRTT[1];
-  static unsigned int min = arrayRTT[1];
-  // for loop through array
-
-  if (arrayRTT[count] - min > 42949672)
-  {
-    min = arrayRTT[count];
-  }
-  if (arrayRTT[count] >= max)
-  {
-    max = arrayRTT[count];
-  }
-  Serial.printf("min RTT is: %d\n", min);
-  Serial.printf("max RTT is: %d\n", max);
-  // tinh RTT trung binh
-  double sumRTT = 0;
-  for (size_t i = 0; i <= count; i++)
-  {
-    sumRTT += (double)arrayRTT[i];
-  }
-  double averageRTT = sumRTT / (double)(count);
-  Serial.printf("Average RTT is: %f \n", averageRTT);
 }
 
 void SaveValue(){
   switch(Node){
-    case 2:
+    case 1:
       TempArr[0] = Temperature;
       HumiArr[0] = Humidity;
       break;
-    case 3:
+    case 2:
       TempArr[1] = Temperature;
       HumiArr[1] = Humidity;
       break;
-    case 4:
+    case 3:
       TempArr[2] = Temperature;
       HumiArr[2] = Humidity;
       break;
-    case 5:
+    case 4:
       TempArr[3] = Temperature;
       HumiArr[3] = Humidity;
       break;
@@ -341,12 +257,10 @@ void SaveValue(){
     for(int i=0; i<4; i++){
       if(TempArr[i]!=0){
         t += TempArr[i];
-        TempArr[i] = 0;
         a++;
       }
       if(HumiArr[i]!=0){
         h += HumiArr[i];
-        HumiArr[i] = 0;
         b++;
       }
     } 
@@ -356,12 +270,14 @@ void SaveValue(){
     if (b!=0){
       HumidityAvg = (round((h/b)*100))/100;
     }
-    // SendtoDB();
-    // GetGPS();
-    Post_to_DB();
+    Post_to_DB("data");
     cnt = 0;
     TemperatureAvg = 0;
     HumidityAvg = 0;
+    for(int i=0; i<4; i++){
+      TempArr[i] = 0;
+      HumiArr[i] = 0;
+    }
   }
 }
 

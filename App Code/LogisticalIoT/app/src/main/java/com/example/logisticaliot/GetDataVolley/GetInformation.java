@@ -22,11 +22,11 @@ public class GetInformation {
         // 1.Khởi tạo request
         RequestQueue queue = Volley.newRequestQueue(context);
         // 2.truyền đường dẫn vào request
-        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, LoginActivity.GetData_Url,null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, LoginActivity.GetDataLocation_Url,null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 // chuyen mang thanh chuoi
-                for (int i=response.length(); i>=0 ; i--){
+                for (int i=response.length() - 1; i>=0 ; i--){
                     try{
                         JSONObject person = response.getJSONObject(i);
                         String Ten = person.getString("Ten");

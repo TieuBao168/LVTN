@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,15 +37,19 @@ public final class ActivityHistoryListBinding implements ViewBinding {
   @NonNull
   public final Button btnBack;
 
+  @NonNull
+  public final Spinner spinnersensor;
+
   private ActivityHistoryListBinding(@NonNull RelativeLayout rootView, @NonNull TextView Doam,
       @NonNull ListView LvThongtin, @NonNull TextView Nhietdo, @NonNull TextView Thoigian,
-      @NonNull Button btnBack) {
+      @NonNull Button btnBack, @NonNull Spinner spinnersensor) {
     this.rootView = rootView;
     this.Doam = Doam;
     this.LvThongtin = LvThongtin;
     this.Nhietdo = Nhietdo;
     this.Thoigian = Thoigian;
     this.btnBack = btnBack;
+    this.spinnersensor = spinnersensor;
   }
 
   @Override
@@ -104,8 +109,14 @@ public final class ActivityHistoryListBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.spinnersensor;
+      Spinner spinnersensor = ViewBindings.findChildViewById(rootView, id);
+      if (spinnersensor == null) {
+        break missingId;
+      }
+
       return new ActivityHistoryListBinding((RelativeLayout) rootView, Doam, LvThongtin, Nhietdo,
-          Thoigian, btnBack);
+          Thoigian, btnBack, spinnersensor);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

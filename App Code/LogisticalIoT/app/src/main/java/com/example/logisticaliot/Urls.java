@@ -5,11 +5,13 @@ public class Urls {
     public static final String REGISTER_URL = ROOT_URL+"register.php";
     public static final String LOGIN_URL = ROOT_URL+"login.php";
 
-    public static final String GETDATA1_URL = ROOT_URL+"getdata1.php";
+    public static final String GETDATALOCATION1_URL = ROOT_URL+"getdatalocation1.php";
+    public static final String GETSENSOR1_URL = ROOT_URL+"getsensor1.php";
     public static final String CONTROL1_URL = ROOT_URL+"control1.php";
     public static final String CONTROLSETUP1_URL = ROOT_URL+"control1/control1.json";
 
-    public static final String GETDATA2_URL = ROOT_URL+"getdata2.php";
+    public static final String GETDATALOCATION2_URL = ROOT_URL+"getdatalocation2.php";
+    public static final String GETSENSOR2_URL = ROOT_URL+"getsensor2.php";
     public static final String CONTROL2_URL = ROOT_URL+"control2.php";
     public static final String CONTROLSETUP2_URL = ROOT_URL+"control2/control2.json";
 

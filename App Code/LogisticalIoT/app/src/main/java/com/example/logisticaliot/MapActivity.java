@@ -62,9 +62,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         DataBtn = findViewById(R.id.Data_Btn);
         ControlBtn = findViewById(R.id.Control_Btn);
-//        GetData(url);
 
-        URL = LoginActivity.GetData_Url;
+        URL= LoginActivity.GetDataLocation_Url;
 
         ControlBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +101,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onResponse(JSONArray response) {
                 // chuyen mang thanh chuoi
-                for (int i=response.length(); i>=0; i--) {
+                for (int i=response.length() - 1; i>=0; i--) {
                     try {
                         JSONObject vitri = response.getJSONObject(i);
 
@@ -121,7 +120,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         e.printStackTrace();
                     }
                 }
-                for (int i = response.length(); i>=0; i--) {
+                for (int i = response.length() - 1; i>=0; i--) {
                     try {
                         JSONObject person = response.getJSONObject(i);
 
@@ -178,7 +177,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     @Override
                     public void onResponse(JSONArray response) {
                         // chuyen mang thanh chuoi
-                        for (int i=response.length(); i>=0; i--){
+                        for (int i=response.length() - 1; i>=0; i--){
                             try{
                                 JSONObject vitri = response.getJSONObject(i);
 
@@ -197,7 +196,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 e.printStackTrace();
                             }
                         }
-                        for (int i=response.length(); i>=0; i--){
+                        for (int i=response.length() - 1; i>=0; i--){
                             try{
                                 JSONObject person = response.getJSONObject(i);
                                 TenTaiXe = person.getString("Ten");

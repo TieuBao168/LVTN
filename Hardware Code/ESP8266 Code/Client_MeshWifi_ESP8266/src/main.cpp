@@ -2,6 +2,7 @@
 #include <painlessMesh.h>
 #include <WiFiManager.h>
 #include <DHTesp.h>
+#include <math.h>
 
 #define MESH_PREFIX     "IoTLogistic"
 #define MESH_PASSWORD   "IoTLogistic2022"
@@ -9,7 +10,11 @@
 
 DHTesp dht;
 
-float humidity, temperature;
+typedef struct{
+  float humidity, temperature = 0;
+} Data;
+Data previous, recent;
+
 int LState;
 //Pin Declaration
 
@@ -23,46 +28,57 @@ Scheduler userScheduler;
 painlessMesh  mesh;
 void sendMessage(uint32_t id); // Prototype so PlatformIO doesn't complain
 //Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
+void compareData();
 
 void sendMessage(uint32_t id){
   Serial.println();
   // Serial.println("Start Sending....");
 
   // delay(dht.getMinimumSamplingPeriod());
-  humidity = round(dht.getHumidity()*100)/100;
-  temperature = roundf(dht.getTemperature()*100)/100;
+  // recent.humidity = round(dht.getHumidity()*100)/100;
+  // recent.temperature = roundf(dht.getTemperature()*100)/100;
 
     // Serializing in JSON Format
   DynamicJsonDocument doc(1024);
 
-  doc["Node"] = 3;
-  doc["Temperature"] = temperature;
-  doc["Humidity"] = humidity;
-  doc["RSSI"] = WiFi.RSSI();
+  doc["Node"] = 4;
+  doc["Temperature"] = recent.temperature;
+  doc["Humidity"] = recent.humidity;
 
   String msg ;
   serializeJson(doc, msg); 
   // uint32_t id = 3323046497; // ID of RootNode
   mesh.sendSingle(id, msg);
-  // Serial.println("Message from Node Leaf: ");
-  // Serial.println(msg);
+  Serial.println("Message from Node Leaf: ");
+  Serial.println(msg);
 
-  Serial.printf("Send message successful: %d time\n", count1);
-  count1++;
   //taskSendMessage.setInterval(TASK_SECOND * 5);
+}
+
+void sendMessageWarn(){
+  Serial.println();
+  DynamicJsonDocument doc(1024);
+
+  doc["Node"] = 4;
+  doc["Temperature"] = recent.temperature;
+  doc["Humidity"] = recent.humidity;
+
+  String msg ;
+  serializeJson(doc, msg); 
+  // uint32_t id = 3323046497; // ID of RootNode
+  mesh.sendBroadcast(msg);
 }
 
 // Needed for painless library
 void receivedCallback( uint32_t from, String &msg ) {
   Serial.println();
-  // Serial.print("Message = ");
-  // Serial.print(msg);
-
-  Serial.printf("Receive message successful: %d time", count);
-  count++;
+  Serial.print("Message = ");
+  Serial.print(msg);
 
   if((msg == "Begin")||(msg == "Error")){
     sendMessage(from);
+  } else if(msg == "Warn"){
+    sendMessageWarn();
   }
 }
 
@@ -98,7 +114,22 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   // it will run the user scheduler as well
-
+  compareData();
   mesh.update();
   
+}
+
+void compareData(){
+  static int skip = 0;
+  recent.humidity = roundf(dht.getHumidity()*100)/100;
+  recent.temperature = roundf(dht.getTemperature()*100)/100;
+  if((abs(recent.temperature - previous.temperature) > 2.0)||
+  (abs(recent.humidity - previous.humidity) > 5.0)){
+    if(skip == 1){
+      mesh.sendBroadcast("Warn");
+    }
+    previous.temperature = recent.temperature;
+    previous.humidity = recent.humidity;
+    skip = 1;
+  }
 }

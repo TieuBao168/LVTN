@@ -2580,6 +2580,7 @@ int drawable notification_template_icon_bg 0x7f0700ac
 int drawable notification_template_icon_low_bg 0x7f0700ad
 int drawable notification_tile_bg 0x7f0700ae
 int drawable notify_panel_notification_icon_bg 0x7f0700af
+int drawable scrollbar_style 0x7f0700b4
 int drawable test_custom_background 0x7f0700b0
 int drawable test_level_drawable 0x7f0700b1
 int drawable tooltip_frame_dark 0x7f0700b2
@@ -2627,8 +2628,8 @@ int id SHOW_PROGRESS 0x7f090020
 int id SYM 0x7f090021
 int id TOP_END 0x7f090022
 int id TOP_START 0x7f090023
+int id TSCB 0x7f09020d
 int id TT_TV5 0x7f090024
-int id TT_TV6 0x7f090025
 int id TX100T_1 0x7f090026
 int id TX100T_2 0x7f090027
 int id Taikhoantext 0x7f090028
@@ -3020,6 +3021,8 @@ int id snapMargins 0x7f0901a9
 int id south 0x7f0901aa
 int id spacer 0x7f0901ab
 int id special_effects_controller_view_tag 0x7f0901ac
+int id spinner 0x7f09020f
+int id spinnersensor 0x7f090211
 int id spline 0x7f0901ad
 int id split_action_bar 0x7f0901ae
 int id spread 0x7f0901af

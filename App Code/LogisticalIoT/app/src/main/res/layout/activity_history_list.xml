@@ -20,33 +20,33 @@
             android:text="Thời gian"
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/Nhietdo"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="55dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/Thoigian"
             android:fontFamily="@font/suez_one"
             android:text="Nhiệt độ (độ C)"
             android:textColor="@color/white"
             android:textSize="20dp"
-            />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/Doam"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/Nhietdo"
             android:fontFamily="@font/suez_one"
             android:text="Độ ẩm (%)"
             android:textColor="@color/white"
             android:textSize="20dp"
-            />
+            android:textStyle="bold"/>
 
         <!--        <TextView-->
         <!--            android:id="@+id/Anhsang"-->
@@ -80,7 +80,28 @@
         android:backgroundTint="@color/Gray"
         android:text="Quay lại"
         android:textColor="@color/black"
-        android:textSize="15dp"
-        />
+        android:textSize="15dp" />
+
+    <Spinner
+        android:id="@+id/spinnersensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LvThongtin"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@+id/btn_back"
+        android:scrollbarThumbVertical="@drawable/scrollbar_style"
+        android:verticalScrollbarPosition="left" />
+
+<!--    <Spinner-->
+<!--        android:id="@+id/spinnerday"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/LvThongtin"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginRight="2dp"-->
+<!--        android:layout_toLeftOf="@+id/btn_back"-->
+<!--        android:scrollbarThumbVertical="@drawable/scrollbar_style"-->
+<!--        android:verticalScrollbarPosition="left" />-->
 
 </RelativeLayout>

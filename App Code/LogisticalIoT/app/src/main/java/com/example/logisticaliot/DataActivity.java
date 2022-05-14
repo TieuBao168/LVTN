@@ -12,8 +12,12 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,10 +47,12 @@ import java.util.Date;
 
 public class DataActivity extends AppCompatActivity {
     Button MapBtn, DataBtn, ControlBtn, HistoryBtn;
-    TextView ThongtinView, NhietdoView, DoamView, AnhsangView;
+    TextView ThongtinView;
     LineChart lineChart_Nhietdo, lineChart_Doam;
     Float Nhietdo, Doam, Value;
     String URL;
+    Spinner Spinner;
+    Integer LockPosition;
 
     static final int NOTIFICATION_ID = 1;
 
@@ -63,35 +69,78 @@ public class DataActivity extends AppCompatActivity {
         DataBtn = findViewById(R.id.Data_Btn);
         ControlBtn = findViewById(R.id.Control_Btn);
         HistoryBtn = findViewById(R.id.History_Btn);
-        URL = LoginActivity.GetData_Url;
+        Spinner = (Spinner)findViewById(R.id.spinner);
+        URL = LoginActivity.GetSensor_Url;
+//        URL = "http://luanvanlogistic.highallnight.com/app/getdata1.php";
 
         GetInformation fetch = new GetInformation();
         fetch.getJSONArray(DataActivity.this,ThongtinView);
 
-        GetChart(URL,lineChart_Nhietdo,"Nhiet do", "Nhiệt độ", Color.RED);
-        GetChart(URL,lineChart_Doam,"Do am", "Độ ẩm", Color.BLUE);
 
-        new CountDownTimer(1000000000,5000) {
+        ArrayList<String> arraySensor = new ArrayList<String>();
+        arraySensor.add("Trung bình");
+        arraySensor.add("Cảm biến 1");
+        arraySensor.add("Cảm biến 2");
+        arraySensor.add("Cảm biến 3");
+        arraySensor.add("Cảm biến 4");
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arraySensor);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner.setAdapter(arrayAdapter);
+        Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onTick(long millisUntilFinished) {
-                GetInformation fetch = new GetInformation();
-                fetch.getJSONArray(DataActivity.this,ThongtinView);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(DataActivity.this, arraySensor.get(position), Toast.LENGTH_SHORT).show();
+                LockPosition = position;
+                new CountDownTimer(1000000000,5000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        GetInformation fetch = new GetInformation();
+                        fetch.getJSONArray(DataActivity.this,ThongtinView);
+                        switch (LockPosition){
+                            case 0:
+                                GetChart(URL,lineChart_Nhietdo,"Nhiet do", "Nhiệt độ", Color.RED);
+                                GetChart(URL,lineChart_Doam,"Do am", "Độ ẩm", Color.BLUE);
+                                break;
+                            case 1:
+                                GetChart(URL,lineChart_Nhietdo,"Nhiet do 1", "Nhiệt độ", Color.RED);
+                                GetChart(URL,lineChart_Doam,"Do am 1", "Độ ẩm", Color.BLUE);
+                                break;
+                            case 2:
+                                GetChart(URL,lineChart_Nhietdo,"Nhiet do 2", "Nhiệt độ", Color.RED);
+                                GetChart(URL,lineChart_Doam,"Do am 2", "Độ ẩm", Color.BLUE);
+                                break;
+                            case 3:
+                                GetChart(URL,lineChart_Nhietdo,"Nhiet do 3", "Nhiệt độ", Color.RED);
+                                GetChart(URL,lineChart_Doam,"Do am 3", "Độ ẩm", Color.BLUE);
+                                break;
+                            case 4:
+                                GetChart(URL,lineChart_Nhietdo,"Nhiet do 4", "Nhiệt độ", Color.RED);
+                                GetChart(URL,lineChart_Doam,"Do am 4", "Độ ẩm", Color.BLUE);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    @Override
+                    public void onFinish() {
 
-                GetChart(URL,lineChart_Nhietdo,"Nhiet do", "Nhiệt độ", Color.RED);
-                GetChart(URL,lineChart_Doam,"Do am", "Độ ẩm", Color.BLUE);
+                    }
+                }.start();
             }
-            @Override
-            public void onFinish() {
 
-            }
-        }.start();
-
-        DataBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-            sendNotification();
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
+
+//        DataBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//            sendNotification();
+//            }
+//        });
 
         MapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,7 +229,6 @@ public class DataActivity extends AppCompatActivity {
                 legend.setXEntrySpace(15);
                 legend.setFormSize(17);
                 legend.setFormToTextSpace(5);
-//                legend.setCustom(ColorTemplate.VORDIPLOM_COLORS, new String[] { "Set1"});
 
                 Description descrip = new Description();
                 descrip.setText(" ");
@@ -207,24 +255,24 @@ public class DataActivity extends AppCompatActivity {
         queue.add(req);
     }
 
-    private void sendNotification() {
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-
-        Notification notification = new Notification.Builder(this)
-                .setContentTitle("Nhiệt độ giảm đột ngột")
-                .setContentText("Message push notification")
-                .setSmallIcon(R.drawable.logo)
-//                .setLargeIcon(bitmap)
-                .build();
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if(notificationManager != null) {
-            notificationManager.notify(NOTIFICATION_ID, notification);
-        }
-    }
-
-    private int getNotificationId(){
-        return (int) new Date().getTime();
-    }
-
+//    void sendNotification() {
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+//
+//        Notification notification = new Notification.Builder(this)
+//                .setContentTitle("Nhiệt độ giảm đột ngột")
+//                .setContentText("Message push notification")
+//                .setSmallIcon(R.drawable.logo)
+////                .setLargeIcon(bitmap)
+//                .build();
+//
+////        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+////        if(notificationManager != null) {
+////            notificationManager.notify(NOTIFICATION_ID, notification);
+////        }
+//    }
+//
+//    private int getNotificationId(){
+//        return (int) new Date().getTime();
+//    }
+//
 }
